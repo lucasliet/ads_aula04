@@ -45,12 +45,12 @@ public class ManterFilmesController extends HttpServlet {
 				html += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
 			}
 			request.setAttribute("generos", html);
-			ArrayList<Filme> filmes = listarFilmes();
+			/*ArrayList<Filme> filmes = listarFilmes();
 			String htmlFilmes = "";
 			for (Filme filme1 : filmes) {
 				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
 			}
-			request.setAttribute("filmes", htmlFilmes);
+			request.setAttribute("filmes", htmlFilmes);*/
 			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
 			view2.forward(request, response);
 			break;
