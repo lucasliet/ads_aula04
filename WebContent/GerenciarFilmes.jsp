@@ -12,7 +12,7 @@
 	<form action="manter_filmes.do" method="GET">
 		<label>ID do filme</label>
 		<input type="text" name="id_filme"/>
-		<input type="submit" name="acao" value="mostrar"/>
+		<input type="submit" name="acao" value="exibir"/>
 	</form>
 
 	<h1>Inserir um Filme</h1>

@@ -28,7 +28,7 @@ public class ManterFilmesController extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		switch (acao) {
-		case "mostrar":
+		case "exibir":
 			String id_filme = request.getParameter("id_filme");
 			int idFilme = Integer.parseInt(id_filme);
 			Filme filme = buscarFilme(idFilme);
