@@ -20,7 +20,6 @@ import ads.pipoca.model.entity.Genero;
 import ads.pipoca.model.service.FilmeService;
 import ads.pipoca.model.service.GeneroService;
 
-
 @WebServlet("/manter_filmes.do")
 public class ManterFilmesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,30 +38,65 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
-		case "inserir_filme":
+		case "gerenciar_filmes":
 			ArrayList<Genero> generos = listarGeneros();
 			String html = "";
 			for (Genero genero : generos) {
-				html +=  "<option value='"+genero.getId()+"'>"+genero.getNome()+"</option>\n";
+				html += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
 			}
-			request.setAttribute("html", html);
-			RequestDispatcher view2 = request.getRequestDispatcher("InserirFilme.jsp");
+			request.setAttribute("generos", html);
+			ArrayList<Filme> filmes = listarFilmes();
+			String htmlFilmes = "";
+			for (Filme filme1 : filmes) {
+				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
+			}
+			request.setAttribute("filmes", htmlFilmes);
+			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
 			view2.forward(request, response);
+			break;
+		case "atualizar_filme":
+			int idFilme3 = Integer.parseInt(request.getParameter("id_filme"));
+			Filme filme2 = buscarFilme(idFilme3);
+			request.setAttribute("titulo", filme2.getTitulo());
+			request.setAttribute("descricao", filme2.getDescricao());
+			request.setAttribute("diretor", filme2.getDiretor());
+			request.setAttribute("data", filme2.getDataLancamento());
+			request.setAttribute("popularidade", filme2.getPopularidade());
+			ArrayList<Genero> generos2 = listarGeneros();
+			String html2 = "";
+			for (Genero genero : generos2) {
+				if (genero.getId() == filme2.getGenero().getId()) {
+					html2 += "<option value='" + genero.getId() + "' selected>" + genero.getNome() + "</option>\n";
+				} else {
+					html2 += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
+				}
+			}
+			request.setAttribute("options", html2);
+			RequestDispatcher view3 = request.getRequestDispatcher("AtualizarFilme.jsp");
+			view3.forward(request, response);
 			break;
 		case "inserir":
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");
 			String diretor = request.getParameter("diretor");
-			int idGenero = Integer.parseInt(request.getParameter("idGenero"));
+			int idGenero = Integer.parseInt(request.getParameter("genero"));
 			String data = request.getParameter("data");
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
 			inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade);
 			break;
 		case "atualizar":
+			int id = Integer.parseInt(request.getParameter("id"));
+			String titulo2 = request.getParameter("titulo");
+			String descricao2 = request.getParameter("descricao");
+			String diretor2 = request.getParameter("diretor");
+			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
+			String data2 = request.getParameter("data");
+			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
+			atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2);
 			break;
 		case "excluir":
-			int id = Integer.parseInt(request.getParameter("id_filme"));
-			int feedback = deletarFilme(id);
+			int filmeId = Integer.parseInt(request.getParameter("id_filme"));
+			int feedback = deletarFilme(filmeId);
 			request.setAttribute("feedback", feedback);
 			break;
 		}
