@@ -39,6 +39,16 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
+		case "inserir_filme":
+			ArrayList<Genero> generos = listarGeneros();
+			String html = "";
+			for (Genero genero : generos) {
+				html +=  "<option value='"+genero.getId()+"'>"+genero.getNome()+"</option>\n";
+			}
+			request.setAttribute("html", html);
+			RequestDispatcher view2 = request.getRequestDispatcher("InserirFilme.jsp");
+			view2.forward(request, response);
+			break;
 		case "inserir":
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");
