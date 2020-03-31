@@ -11,7 +11,7 @@
 	<p>Digite o código do Filme para mostrar seus dados</p>
 	<form action="manter_filmes.do" method="GET">
 		<label>ID do filme</label>
-		<input type="text" name="id_filme"/>
+		<input type="text" name="id_exibir"/>
 		<input type="submit" name="acao" value="exibir"/>
 	</form>
 
@@ -34,7 +34,7 @@
 	<p>Digite o código do Filme para atualizar seus dados</p>
 	<form action="manter_filmes.do" method="GET">
 		<label>ID do filme</label>
-		<input type="text" name="id_filme"/>		
+		<input type="text" name="id_atualizar"/>		
 		<input type="submit" name="acao" value="atualizar_filme"/>
 	</form>
 	
@@ -42,7 +42,7 @@
 	<p>Digite o código do Filme a ser excluido</p>
 	<form action="manter_filmes.do" method="GET">
 		<label>ID do filme</label>
-		<input type="text" name="id_filme"/>		
+		<input type="text" name="id_excluir"/>		
 		<input type="submit" name="acao" value="excluir"/>
 	</form>
 </body>

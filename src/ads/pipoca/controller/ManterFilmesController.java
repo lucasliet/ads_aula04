@@ -56,11 +56,7 @@ public class ManterFilmesController extends HttpServlet {
 		case "atualizar_filme":
 			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
 			Filme filme2 = buscarFilme(idFilme3);
-			request.setAttribute("titulo", filme2.getTitulo());
-			request.setAttribute("descricao", filme2.getDescricao());
-			request.setAttribute("diretor", filme2.getDiretor());
-			request.setAttribute("data", filme2.getDataLancamento());
-			request.setAttribute("popularidade", filme2.getPopularidade());
+			request.setAttribute("filme", filme2);
 			ArrayList<Genero> generos2 = listarGeneros();
 			String html2 = "";
 			for (Genero genero : generos2) {
