@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Gerenciamento de Filmes</title>
-</head>
-<body>
-	<a href="manter_filmes.do?acao=gerenciar_filmes">Gerenciar Filmes</a>	
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Gerenciamento de Filmes</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="Style.css">
+	</head>
+	<body>
+		<div class="container">
+			<section>
+				<button type="submit" name="acao" value="inserir">Inserir Filme</button>
+
+				<button type="submit" name="acao" value="excluir">Deletar Filme</button>
+				<input type="number" name="id_excluir">
+				
+				<button type="submit" name="acao" value="atualizar_filme">Alterar Filme</button>
+				<input type="number" name="id_alterar">
+
+				<button type="submit" name="acao" value="exibir">Exibir Filme</button>
+				<input type="number" name="id_ixibir">
+			</section>
+			<a href="manter_filmes.do?acao=gerenciar_filmes">Gerenciar Filmes</a>
+		</div>
+	</body>
 </html>
