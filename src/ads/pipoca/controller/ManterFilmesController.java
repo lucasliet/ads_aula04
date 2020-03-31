@@ -57,6 +57,9 @@ public class ManterFilmesController extends HttpServlet {
 			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
 			Filme filme2 = buscarFilme(idFilme3);
 			request.setAttribute("filme", filme2);
+			SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
+			String data=formatter.format(filme2.getDataLancamento());
+			request.setAttribute("data", data);
 			ArrayList<Genero> generos2 = listarGeneros();
 			String html2 = "";
 			for (Genero genero : generos2) {
@@ -75,9 +78,9 @@ public class ManterFilmesController extends HttpServlet {
 			String descricao = request.getParameter("descricao");
 			String diretor = request.getParameter("diretor");
 			int idGenero = Integer.parseInt(request.getParameter("genero"));
-			String data = request.getParameter("data");
+			String data1 = request.getParameter("data");
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade);
+			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade);
 			Filme filmeInserido = buscarFilme(idInserido);
 			System.out.println(filmeInserido);
 			request.setAttribute("filme", filmeInserido);
