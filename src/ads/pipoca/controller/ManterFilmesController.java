@@ -37,22 +37,6 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
-		case "gerenciar_filmes":
-			ArrayList<Genero> generos = listarGeneros();
-			String html = "";
-			for (Genero genero : generos) {
-				html += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
-			}
-			request.setAttribute("generos", html);
-			/*ArrayList<Filme> filmes = listarFilmes();
-			String htmlFilmes = "";
-			for (Filme filme1 : filmes) {
-				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
-			}
-			request.setAttribute("filmes", htmlFilmes);*/
-			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
-			view2.forward(request, response);
-			break;
 		case "atualizar_filme":
 			int idFilme3 = Integer.parseInt(request.getParameter("id_filme"));
 			Filme filme2 = buscarFilme(idFilme3);
@@ -97,6 +81,22 @@ public class ManterFilmesController extends HttpServlet {
 			int filmeId = Integer.parseInt(request.getParameter("id_filme"));
 			int feedback = deletarFilme(filmeId);
 			request.setAttribute("feedback", feedback);
+			break;
+		default :
+			ArrayList<Genero> generos = listarGeneros();
+			String html = "";
+			for (Genero genero : generos) {
+				html += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
+			}
+			request.setAttribute("generos", html);
+			/*ArrayList<Filme> filmes = listarFilmes();
+			String htmlFilmes = "";
+			for (Filme filme1 : filmes) {
+				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
+			}
+			request.setAttribute("filmes", htmlFilmes);*/
+			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
+			view2.forward(request, response);
 			break;
 		}
 
