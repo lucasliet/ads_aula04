@@ -1,32 +1,4 @@
 body {
-    background-color: #e5e5e5;
-    color: #252825;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5e5;  
 }
 
-.container {
-	margin-top: 80px;
-	width: 100%;
-    max-width: 1120px;
-    height: 100vh;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-	
-}
-
-button {
-	background: blue;
-    color: black;
-    font-size: 14px;
-    border-radius: 10px;
-    width: 150px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-}
-
-button:hover {
-	background-color: white;
-}
