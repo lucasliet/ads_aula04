@@ -34,7 +34,7 @@ public class ManterFilmesController extends HttpServlet {
 			Filme filme = buscarFilme(idFilme);
 			System.out.println(filme);
 			request.setAttribute("filme", filme);
-			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
 			view.forward(request, response);
 			break;
 		case "gerenciar_filmes":
@@ -81,7 +81,12 @@ public class ManterFilmesController extends HttpServlet {
 			int idGenero = Integer.parseInt(request.getParameter("genero"));
 			String data = request.getParameter("data");
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade);
+			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade);
+			Filme filmeInserido = buscarFilme(idInserido);
+			System.out.println(filmeInserido);
+			request.setAttribute("filme", filmeInserido);
+			RequestDispatcher viewInserir = request.getRequestDispatcher("ExibirFilme.jsp");
+			viewInserir.forward(request, response);
 			break;
 		case "atualizar":
 			int id = Integer.parseInt(request.getParameter("id"));
