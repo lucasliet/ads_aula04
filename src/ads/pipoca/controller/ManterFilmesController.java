@@ -28,8 +28,8 @@ public class ManterFilmesController extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		switch (acao) {
-		case "mostrar":
-			String id_filme = request.getParameter("id_filme");
+		case "exibir":
+			String id_filme = request.getParameter("id_exibir");
 			int idFilme = Integer.parseInt(id_filme);
 			Filme filme = buscarFilme(idFilme);
 			System.out.println(filme);
@@ -54,7 +54,7 @@ public class ManterFilmesController extends HttpServlet {
 			view2.forward(request, response);
 			break;
 		case "atualizar_filme":
-			int idFilme3 = Integer.parseInt(request.getParameter("id_filme"));
+			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
 			Filme filme2 = buscarFilme(idFilme3);
 			request.setAttribute("titulo", filme2.getTitulo());
 			request.setAttribute("descricao", filme2.getDescricao());
@@ -96,10 +96,14 @@ public class ManterFilmesController extends HttpServlet {
 			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
 			String data2 = request.getParameter("data");
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
-			atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2);
+			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2);
+			System.out.println(filmeAtualizado);
+			request.setAttribute("filme", filmeAtualizado);
+			RequestDispatcher viewAtualizar = request.getRequestDispatcher("ExibirFilme.jsp");
+			viewAtualizar.forward(request, response);
 			break;
 		case "excluir":
-			int filmeId = Integer.parseInt(request.getParameter("id_filme"));
+			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
 			int feedback = deletarFilme(filmeId);
 			request.setAttribute("feedback", feedback);
 			break;
