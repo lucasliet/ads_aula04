@@ -19,6 +19,7 @@ import ads.pipoca.model.entity.Genero;
 import ads.pipoca.model.service.FilmeService;
 import ads.pipoca.model.service.GeneroService;
 
+
 @WebServlet("/manter_filmes.do")
 public class ManterFilmesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -49,6 +50,8 @@ public class ManterFilmesController extends HttpServlet {
 		case "atualizar":
 			break;
 		case "excluir":
+			int idFilme = Integer.parseInt(request.getParameter("id_filme"));
+			
 			break;
 		}
 
