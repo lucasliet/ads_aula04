@@ -33,20 +33,27 @@ public class ManterFilmesController extends HttpServlet {
 		case "mostrar":
 			String id_filme = request.getParameter("id_filme");
 			int idFilme = Integer.parseInt(id_filme);
-			FilmeService fservice = new FilmeService();
-			Filme filme = fservice.buscarFilme(idFilme);
+			Filme filme = buscarFilme(idFilme);
 			System.out.println(filme);
 			request.setAttribute("filme", filme);
 			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
 		case "inserir":
+			String titulo = request.getParameter("titulo");
+			String descricao = request.getParameter("descricao");
+			String diretor = request.getParameter("diretor");
+			int idGenero = Integer.parseInt(request.getParameter("idGenero"));
+			String data = request.getParameter("data");
+			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
+			inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade);
 			break;
 		case "atualizar":
 			break;
 		case "excluir":
-			int idFilme = Integer.parseInt(request.getParameter("id_filme"));
-			
+			int id = Integer.parseInt(request.getParameter("id_filme"));
+			int feedback = deletarFilme(id);
+			request.setAttribute("feedback", feedback);
 			break;
 		}
 
@@ -57,7 +64,7 @@ public class ManterFilmesController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	public Filme listarFilme(int id) throws IOException {
+	public Filme buscarFilme(int id) throws IOException {
 		FilmeService filmeService;
 		filmeService = new FilmeService();
 		Filme filme;
