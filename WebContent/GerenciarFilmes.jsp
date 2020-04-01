@@ -14,14 +14,10 @@
         <script src="https://kit.fontawesome.com/da77f520d1.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="Style.css">
         <style>
-            body {
-                background-image: url(https://www.canvasetc.com/wp-content/uploads/2018/09/texture-1270733_1920-1.jpg);
-            }
             .cbg-rolo {
                 background-image: url(https://cdn.pixabay.com/photo/2013/07/13/12/52/filmstripe-160520_640.png);
                 background-position: center;
                 background-size: contain;
-                     
             }
             .ctext-shadow{
                 text-shadow: 5px 4px #222;
@@ -56,6 +52,7 @@
                                 <div class="form-group col-12">
                                     <label for="id_exibir">Selecione o Filme</label>
                                     <select name="id_exibir" class="form-control">
+                                        <option>Selecione o filme</option>
 								 		${filmes} 
 									</select>
                                 </div>
