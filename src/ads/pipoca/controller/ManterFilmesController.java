@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -89,7 +90,13 @@ public class ManterFilmesController extends HttpServlet {
 			String descricao = request.getParameter("descricao");
 			String diretor = request.getParameter("diretor");
 			int idGenero = Integer.parseInt(request.getParameter("genero"));
-			String data1 = request.getParameter("data");
+			SimpleDateFormat sql = new SimpleDateFormat("yyyy-MM-dd");
+			Date data1 = null;
+			try {
+				data1 = sql.parse(request.getParameter("data"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
 			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade);
 			Filme filmeInserido = buscarFilme(idInserido);
@@ -154,7 +161,7 @@ public class ManterFilmesController extends HttpServlet {
 		return filmeService.deletarFilme(id);
 	}
 
-	public int inserirFilme(String titulo, String descricao, String diretor, int idGenero, String data,
+	public int inserirFilme(String titulo, String descricao, String diretor, int idGenero, Date data,
 			double popularidade) throws IOException {
 		Filme filme;
 		Genero genero;
@@ -167,14 +174,15 @@ public class ManterFilmesController extends HttpServlet {
 		genero = generoDAO.buscarGenero(idGenero);
 		filme.setGenero(genero);
 
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		/*DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			filme.setDataLancamento(formatter.parse(data));
 		} catch (ParseException e) {
 			e.printStackTrace();
 			filme.setDataLancamento(null);
-		}
-
+		}*/
+		filme.setDataLancamento(data);
+		
 		filme.setPopularidade(popularidade);
 		filme.setPosterPath("img/" + titulo + ".jpg");
 		FilmeService service = new FilmeService();
