@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <title>Gerenciamento de Filmes</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    	<link rel="stylesheet" href="Style.css">
     </head>
 
     <body>
@@ -66,7 +67,7 @@
                     <div class="form-row">
                         <div class="form-group col-sm-12 col-md-6">
                             <label for="titulo">Titulo</label>
-                            <input type="email" class="form-control" name="titulo" placeholder="Náufrago">
+                            <input type="text" class="form-control" name="titulo" placeholder="Náufrago">
                         </div>
                         <div class="form-group col-sm-12 col-md-6">
                             <label for="diretor">Diretor</label>
@@ -80,11 +81,11 @@
                     <div class="form-row">
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="data">Data</label>
-                            <input type="date" class="form-control" name="data">
+                            <input type="text" class="form-control" name="data" placeholder="dd/mm/yyyy">
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="popularnameade">Popularidade</label>
-                            <input type="number" class="form-control" name="popularnameade" max=999 placeholder="603.5">
+                            <input type="number" class="form-control" name="popularidade" max=999 placeholder="603.5">
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="genero">Genero</label>

@@ -32,11 +32,11 @@ public class ManterFilmesController extends HttpServlet {
 			String id_filme = request.getParameter("id_exibir");
 			int idFilme = Integer.parseInt(id_filme);
 			Filme filme = buscarFilme(idFilme);
-			System.out.println(filme);
 			request.setAttribute("filme", filme);
 			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
 			view.forward(request, response);
 			break;
+			
 		case "gerenciar_filmes":
 			ArrayList<Genero> generos = listarGeneros();
 			String html = "";
@@ -53,6 +53,7 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
 			view2.forward(request, response);
 			break;
+			
 		case "atualizar_filme":
 			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
 			Filme filme2 = buscarFilme(idFilme3);
@@ -73,15 +74,16 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view3 = request.getRequestDispatcher("AtualizarFilme.jsp");
 			view3.forward(request, response);
 			break;
+			
 		case "excluir_filme":
 			String idExcluido = request.getParameter("id_excluir");
 			int idFilmeExcluido = Integer.parseInt(idExcluido);
 			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
-			System.out.println(filmeExcluido);
 			request.setAttribute("filme", filmeExcluido);
 			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExcluirFilme.jsp");
 			viewExcluido.forward(request, response);
 			break;
+			
 		case "inserir":
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");
@@ -96,6 +98,7 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher viewInserir = request.getRequestDispatcher("ExibirFilme.jsp");
 			viewInserir.forward(request, response);
 			break;
+			
 		case "atualizar":
 			int id = Integer.parseInt(request.getParameter("id"));
 			String titulo2 = request.getParameter("titulo");
@@ -105,13 +108,14 @@ public class ManterFilmesController extends HttpServlet {
 			String data2 = request.getParameter("data");
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
 			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2);
-			System.out.println(filmeAtualizado);
 			request.setAttribute("filme", filmeAtualizado);
 			RequestDispatcher viewAtualizar = request.getRequestDispatcher("ExibirFilme.jsp");
 			viewAtualizar.forward(request, response);
 			break;
+			
 		case "excluir":
 			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
+			System.out.println(filmeId);
 			int feedback = deletarFilme(filmeId);
 			request.setAttribute("feedback", feedback);
 			break;

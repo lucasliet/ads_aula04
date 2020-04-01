@@ -40,9 +40,9 @@ public class FilmeDAO {
             e.printStackTrace();
             throw new IOException(e);
         }
-        for (int i = 0; i<filmes.size(); i++) {
+        /*for (int i = 0; i<filmes.size(); i++) {
         	System.out.println(filmes.get(i)+"\n");
-        }
+        }*/
         return filmes;
     }
 
@@ -93,6 +93,8 @@ public class FilmeDAO {
             PreparedStatement pst = conn.prepareStatement(sql);){
                 filme = buscarFilme(id);
                 pst.setInt(1, id);
+                pst.execute();
+                System.out.println("filme deletado");
                 feedback = 1;
         }catch (SQLException e) {
             e.printStackTrace();
@@ -149,11 +151,13 @@ public class FilmeDAO {
             pst.setDate(5, new java.sql.Date(filme.getDataLancamento().getTime()));
             pst.setInt(6, filme.getGenero().getId());
             pst.setInt(7, filme.getId());
+            pst.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IOException(e);
         }
-        	Filme filmeAlterado = buscarFilme(filme.getId());
+            Filme filmeAlterado = buscarFilme(filme.getId());
         return filmeAlterado;
     }
 }
