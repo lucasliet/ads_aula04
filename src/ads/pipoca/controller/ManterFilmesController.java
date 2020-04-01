@@ -73,6 +73,15 @@ public class ManterFilmesController extends HttpServlet {
 			RequestDispatcher view3 = request.getRequestDispatcher("AtualizarFilme.jsp");
 			view3.forward(request, response);
 			break;
+		case "excluir_filme":
+			String idExcluido = request.getParameter("id_excluir");
+			int idFilmeExcluido = Integer.parseInt(idExcluido);
+			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
+			System.out.println(filmeExcluido);
+			request.setAttribute("filme", filmeExcluido);
+			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExcluirFilme.jsp");
+			viewExcluido.forward(request, response);
+			break;
 		case "inserir":
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");

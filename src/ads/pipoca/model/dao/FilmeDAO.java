@@ -87,7 +87,7 @@ public class FilmeDAO {
     public int deletarFilme(int id) throws IOException {
         int feedback = -1;
         Filme filme;
-        String sql = "DELETE FROM filme WHERE id = ?";
+        String sql = "DELETE FROM FILME WHERE id = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql);){
@@ -153,6 +153,7 @@ public class FilmeDAO {
             e.printStackTrace();
             throw new IOException(e);
         }
-        return filme;
+        	Filme filmeAlterado = buscarFilme(filme.getId());
+        return filmeAlterado;
     }
 }

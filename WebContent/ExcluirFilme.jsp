@@ -13,5 +13,7 @@
 	<strong>Descrição:</strong> ${filme.descricao}<br/>
 	<strong>Diretor:</strong> ${filme.diretor}<br/>
 	<strong>Genero:</strong> ${filme.genero.nome}<br/>
+	<input type="hidden" value="${filme.id}" name="id_excluir">
+	<input type="submit" name="acao" value="excluir"/>
 </body>
 </html>

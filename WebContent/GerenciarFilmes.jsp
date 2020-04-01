@@ -7,7 +7,6 @@
         <meta charset="UTF-8">
         <title>Gerenciamento de Filmes</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="Style.css">
     </head>
 
     <body>
@@ -105,7 +104,7 @@
                     <form action="manter_filmes.do" method="GET" class="card m-3 rounded shadow">
                         <div class="card-header bg-dark text-white p-3">
                             <h1>Excluir Filme</h1>
-                            <p>Selecione o Filme para ser excluido</p>
+                            <p>Selecione o Filme para ser <span class="badge badge-danger p-1">EXCLUIDO</span></p>
                         </div>
                         <div class="cad-body p-3">
                             <div class="form-row">
@@ -117,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="submit" name="acao" value="excluir" class="btn btn-danger">EXCLUIR</button>
+                                <button type="submit" name="acao" value="excluir_filme" class="btn btn-danger">EXCLUIR</button>
                             </div>
                         </div>
                     </form>
