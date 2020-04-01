@@ -92,8 +92,8 @@
 
             <form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow">
                 <div class="card-header bg-dark text-white p-3">
-                    <h1><i class="fas fa-film"></i> Inserir um Filme</h1>
-                    <p>Digite o dados do Filme para mostrar seus dados</p>
+                    <h1><i class="fas fa-film"></i> Inserir Filme</h1>
+                    <p>Preencha os dados para inserir um novo filme</p>
                 </div>
                 <div class="cad-body p-3">
                     <div class="form-row">
