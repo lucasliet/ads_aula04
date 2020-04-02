@@ -121,19 +121,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="descricao">Descrição</label>
+                        <label for="descricao">Sinopse</label>
                         <div class="input-group">
                        	    <div class="input-group-prepend">
 								<span class="input-group-text"  id="basic-addon1">
 									<i class="fas fa-file-alt"></i>
 								</span>
 						    </div>
-                        	<textarea type="text" class="form-control" name="descricao" placeholder="O dedicado funcionário executivo da FedEx, Chuck Noland, viaja a trabalho para a Malásia quando o avião da empresa cai sobre o Oceano Pacífico durante uma tempestade. Como o único sobrevivente do acidente, Chuck vai parar em uma ilha deserta. Quando suas tentativas de socorro se esgotam, Chuck aprende a sobreviver na ilha." rows=3></textarea>
+                        	<textarea type="text" class="form-control" name="descricao" placeholder="O dedicado funcionário executivo da FedEx, Chuck Noland, viaja a trabalho para a Malásia quando o avião da empresa cai sobre o Oceano Pacífico durante uma tempestade. Como o único sobrevivente do acidente, Chuck vai parar em uma ilha deserta. Quando suas tentativas de socorro se esgotam, Chuck aprende a sobreviver na ilha." rows=3 required></textarea>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-4">
-                            <label for="data">Data</label>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="data">Data de lançamento</label>
                             <div class="input-group">
             	           	    <div class="input-group-prepend">
 									<span class="input-group-text"  id="basic-addon1">
@@ -143,7 +143,7 @@
                     	        <input type="date" class="form-control" name="data" placeholder="dd/mm/yyyy" required>
                             </div>
                         </div>
-                        <div class="form-group col-sm-12 col-md-4">
+                        <div class="form-group col-sm-12 col-md-3">
                             <label for="popularnameade">Popularidade</label>
                             <div class="input-group">
             	           	    <div class="input-group-prepend">
@@ -154,7 +154,7 @@
                             	<input type="number" class="form-control" name="popularidade" max=1000 placeholder="60.5" required>
                             </div>
                         </div>
-                        <div class="form-group col-sm-12 col-md-4">
+                        <div class="form-group col-sm-12 col-md-3">
                             <label for="genero">Genero</label>
                             <div class="input-group">
             	           	    <div class="input-group-prepend">
@@ -167,6 +167,17 @@
 									${generos}
 								</select>
 							</div>
+                        </div>
+                         <div class="form-group col-sm-12 col-md-3">
+                            <label for="posterpath">Link do poster</label>
+                            <div class="input-group">
+            	           	    <div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-image"></i>
+									</span>
+							    </div>
+                    	        <input type="text" class="form-control" name="posterpath" placeholder="https://image.tmdb.org/t/p/original/w515BrZvczKIxbHurG6HIiYYrba.jpg" required>
+                            </div>
                         </div>
                     </div>
                     <div class="text-right">

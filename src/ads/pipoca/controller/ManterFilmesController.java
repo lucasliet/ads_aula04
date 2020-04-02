@@ -90,9 +90,8 @@ public class ManterFilmesController extends HttpServlet {
 			
 		case "inserir":
 			String titulo = request.getParameter("titulo");
-			String descricao = request.getParameter("descricao");
 			String diretor = request.getParameter("diretor");
-			int idGenero = Integer.parseInt(request.getParameter("genero"));
+			String descricao = request.getParameter("descricao");
 			SimpleDateFormat sql = new SimpleDateFormat("yyyy-MM-dd");
 			Date data1 = null;
 			try {
@@ -101,7 +100,9 @@ public class ManterFilmesController extends HttpServlet {
 				e.printStackTrace();
 			}
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade);
+			int idGenero = Integer.parseInt(request.getParameter("genero"));
+			String posterPath = request.getParameter("posterpath");
+			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade, posterPath);
 			Filme filmeInserido = buscarFilme(idInserido);
 			System.out.println(filmeInserido);
 			request.setAttribute("filme", filmeInserido);
@@ -165,7 +166,7 @@ public class ManterFilmesController extends HttpServlet {
 	}
 
 	public int inserirFilme(String titulo, String descricao, String diretor, int idGenero, Date data,
-			double popularidade) throws IOException {
+			double popularidade, String posterPath) throws IOException {
 		Filme filme;
 		Genero genero;
 		filme = new Filme();
@@ -187,7 +188,7 @@ public class ManterFilmesController extends HttpServlet {
 		filme.setDataLancamento(data);
 		
 		filme.setPopularidade(popularidade);
-		filme.setPosterPath("img/" + titulo + ".jpg");
+		filme.setPosterPath(posterPath);
 		FilmeService service = new FilmeService();
 		return service.inserirFilme(filme);
 	}
