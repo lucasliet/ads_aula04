@@ -13,32 +13,18 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/da77f520d1.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="Style.css">
-        <style>
-            .cbg-rolo {
-                background-image: url(https://cdn.pixabay.com/photo/2013/07/13/12/52/filmstripe-160520_640.png);
-                background-position: center;
-                background-size: contain;
-            }
-            .ctext-shadow{
-                text-shadow: 5px 4px #222;
-            }
-            .cbtn-back{
-            	position: absolute;
-            	margin-left: 2rel;
-            	margin-top: 5px;
-            }
-            .cbtn-back a :hover {color: #eee !important;}
-            .cbtn-back a :active{color: #bbb !important}
-        </style>
+        
     </head>
 
     <body>
-        <button class="btn cbtn-back">
-        <h1><a href="index.html" class="text-white"><i class="fas fa-arrow-circle-left"></i></a></h1>
-        </button>
-        <div class="bg-dark cbg-rolo text-white text-center p-2">
-            <h1 class="text-bold text-uppercase ctext-shadow">🍿Pipoca admin🍿</h1>
-        </div>
+        <header>
+            <button class="btn cbtn-back ">
+            <h1><a href="index.html" class="text-white"><i class="fas fa-arrow-circle-left"></i></a></h1>
+            </button>
+            <div class="bg-dark cbg-rolo text-white text-center p-2">
+                <h1 class="text-bold text-uppercase ctext-shadow ">🍿Pipoca admin🍿</h1>
+            </div>
+        </header>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">

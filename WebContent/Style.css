@@ -2,3 +2,18 @@ body {
     background-image: url(https://www.canvasetc.com/wp-content/uploads/2018/09/texture-1270733_1920-1.jpg);
 }
 
+header .cbg-rolo {
+    background-image: url(https://cdn.pixabay.com/photo/2013/07/13/12/52/filmstripe-160520_640.png);
+    background-position: center;
+    background-size: contain;
+}
+header .ctext-shadow{
+    text-shadow: 5px 4px #222;
+}
+header .cbtn-back{
+    position: absolute;
+    margin-left: 2rel;
+    margin-top: 5px;
+}
+header .cbtn-back a :hover {color: #eee !important;}
+header .cbtn-back a :active{color: #bbb !important}
