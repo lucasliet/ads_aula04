@@ -2,18 +2,19 @@
 	pageEncoding="UTF-8"%>
     <!DOCTYPE html>
     <html lang="pt-br">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-        
+
         <title>Pipoca Admin</title>
-        
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/da77f520d1.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="Style.css">
-        
+
     </head>
 
     <body>
@@ -25,10 +26,10 @@
                 <h1 class="text-bold text-uppercase ctext-shadow ">🍿Pipoca admin🍿</h1>
             </div>
         </header>
-        <div class="container">
+        <div class="container my-3">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow">
+                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow bg-light">
                         <div class="card-header bg-dark text-white p-3">
                             <h1><i class="fas fa-film"></i> Exibir Filme</h1>
                             <p>Selecione um Filme para ser exibido</p>
@@ -36,11 +37,18 @@
                         <div class="cad-body p-3">
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="id_exibir">Selecione o Filme</label>
-                                    <select name="id_exibir" class="form-control">
-                                        <option>Selecione o filme</option>
-								 		${filmes} 
-									</select>
+                                    <label for="id_exibir">Filme</label>
+                                    <div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"  id="basic-addon1">
+												<i class="fas fa-video"></i> 
+											</span>
+				 						</div>
+                	                    <select name="id_exibir" class="form-control" required>
+            	                            <option value="" disabled selected>Selecione o filme</option>
+									 		${filmes} 
+										</select>
+									</div>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -51,7 +59,7 @@
                 </div>
 
                 <div class="col-sm-12 col-md-6">
-                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow">
+                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow bg-light">
                         <div class="card-header bg-dark text-white p-3">
                             <h1><i class="fas fa-film"></i> Atualizar Filme</h1>
                             <p>Selecione o Filme para ser alterado</p>
@@ -59,10 +67,18 @@
                         <div class="cad-body p-3">
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="id_atualizar">Selecione o Filme</label>
-                                    <select name="id_atualizar" class="form-control">
-								 		${filmes} 
-									</select>
+                                    <label for="id_atualizar">Filme</label>
+                                     <div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"  id="basic-addon1">
+												<i class="fas fa-video"></i> 
+											</span>
+				 						</div>
+                	                    <select name="id_exibir" class="form-control" required>
+            	                            <option value="" disabled selected>Selecione o filme</option>
+									 		${filmes} 
+										</select>
+									</div>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -73,7 +89,7 @@
                 </div>
             </div>
 
-            <form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow">
+            <form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow bg-light">
                 <div class="card-header bg-dark text-white p-3">
                     <h1><i class="fas fa-film"></i> Inserir Filme</h1>
                     <p>Preencha os dados para inserir um novo filme</p>
@@ -82,31 +98,74 @@
                     <div class="form-row">
                         <div class="form-group col-sm-12 col-md-6">
                             <label for="titulo">Titulo</label>
-                            <input type="text" class="form-control" name="titulo" placeholder="Náufrago">
+                            <div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-video"></i> 
+									</span>
+				 				</div>
+                            	<input type="text" class="form-control" name="titulo" placeholder="Náufrago" required>
+                            </div>
                         </div>
                         <div class="form-group col-sm-12 col-md-6">
                             <label for="diretor">Diretor</label>
-                            <input type="text" class="form-control" name="diretor" placeholder="Robert Zemeckis">
+                            <div class="input-group">
+                        	   <div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-address-book"></i>
+									</span>
+							   </div>
+     	                       <input type="text" class="form-control" name="diretor" placeholder="Robert Zemeckis" required>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <textarea type="text" class="form-control" name="descricao" placeholder="A FedEx executive undergoes a physical and emotional transformation after crash landing on a deserted island."></textarea>
+                        <div class="input-group">
+                       	    <div class="input-group-prepend">
+								<span class="input-group-text"  id="basic-addon1">
+									<i class="fas fa-file-alt"></i>
+								</span>
+						    </div>
+                        	<textarea type="text" class="form-control" name="descricao" placeholder="O dedicado funcionário executivo da FedEx, Chuck Noland, viaja a trabalho para a Malásia quando o avião da empresa cai sobre o Oceano Pacífico durante uma tempestade. Como o único sobrevivente do acidente, Chuck vai parar em uma ilha deserta. Quando suas tentativas de socorro se esgotam, Chuck aprende a sobreviver na ilha." rows=3></textarea>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="data">Data</label>
-                            <input type="date" class="form-control" name="data" placeholder="dd/mm/yyyy">
+                            <div class="input-group">
+            	           	    <div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-calendar-day"></i>
+									</span>
+							    </div>
+                    	        <input type="date" class="form-control" name="data" placeholder="dd/mm/yyyy" required>
+                            </div>
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="popularnameade">Popularidade</label>
-                            <input type="number" class="form-control" name="popularidade" max=999 placeholder="603.5">
+                             <div class="input-group">
+            	           	    <div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-star"></i>
+									</span>
+							    </div>
+                            	<input type="number" class="form-control" name="popularidade" max=1000 placeholder="60.5" required>
+                            </div>
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="genero">Genero</label>
-                            <select name="genero" class="form-control">
-								${generos}
-							</select>
+                            <div class="input-group">
+            	           	    <div class="input-group-prepend">
+									<span class="input-group-text"  id="basic-addon1">
+										<i class="fas fa-theater-masks"></i>
+									</span>
+							    </div>
+                            	<select name="genero" class="form-control" required>
+                                	<option value="" disabled selected>Selecione o genero</option>
+									${generos}
+								</select>
+							</div>
                         </div>
                     </div>
                     <div class="text-right">
@@ -117,7 +176,7 @@
 
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow">
+                    <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow bg-light">
                         <div class="card-header bg-dark text-white p-3">
                             <h1><i class="fas fa-film"></i> Excluir Filme</h1>
                             <p>Selecione o Filme para ser <span class="badge badge-danger p-1 text-uppercase	">excluído</span></p>
@@ -125,14 +184,22 @@
                         <div class="cad-body p-3">
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="id_excluir">Selecione o Filme</label>
-                                    <select name="id_excluir" class="form-control">
-								 		${filmes} 
-									</select>
+                                    <label for="id_excluir">Filme</label>
+                                     <div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"  id="basic-addon1">
+												<i class="fas fa-video"></i> 
+											</span>
+				 						</div>
+                	                    <select name="id_exibir" class="form-control" required>
+            	                            <option value="" disabled selected>Selecione o filme</option>
+									 		${filmes} 
+										</select>
+									</div>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="submit" name="acao" value="excluir_filme" class="btn btn-danger">EXCLUIR</button>
+                                <button type="submit" name="acao" value="excluir_filme" class="btn btn-danger text-uppercase">excluir</button>
                             </div>
                         </div>
                     </form>
