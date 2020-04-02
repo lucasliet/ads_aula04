@@ -75,7 +75,7 @@
 								<div class="input-group-prepend">
 								  <span class="input-group-text">Descrição</span>
 								</div>
-								<textarea ${filme.descricao} class="form-control" aria-label="Com textarea"></textarea>
+								<textarea  class="form-control" name="descricao">${filme.descricao}></textarea>
 							 </div>
 						
 						</div>
