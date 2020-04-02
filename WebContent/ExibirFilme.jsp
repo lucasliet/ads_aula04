@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-sm-10" >
-					<form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow">
+					<form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow bg-light">
 						<div class="card-header bg-dark text-white p-3">
 							<h1><i class="fas fa-film"></i>Filme</h1>
 						</div>
@@ -34,11 +34,11 @@
 						<div class="col-sm-12  my-auto" >
 							<div class="card-body p-3">
 								<div class="row my-2">
-									<img class="col-sm-12 col-md-3" src="${filme.posterPath}" alt="" srcset="">
+									<img class="col-sm-12 col-md-5 col-lg-3" src="${filme.posterPath}" alt="" srcset="">
 
-									<div class="col-sm-12 col-md-9 ">
+									<div class="col-sm-12 col-md-7 col-lg-9 ">
 										<div class="form-row">
-											<div class="form-group col-sm-12 col-md-2">
+											<div class="form-group col-sm-4 col-lg-3">
 												<label for="titulo">ID</label>
 												<div class="input-group">
 													<div class="input-group-prepend">
@@ -49,7 +49,7 @@
 													<input type="text" class="form-control" name="id" value="${filme.id}">
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-10">
+											<div class="form-group col-sm-12 col-md-12 col-lg-9">
 												<label for="titulo">Titulo</label>
 												<div class="input-group ">
 													<div class="input-group-prepend">
