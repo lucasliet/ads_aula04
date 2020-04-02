@@ -25,6 +25,7 @@
             <div class="bg-dark cbg-rolo text-white text-center p-2">
                 <h1 class="text-bold text-uppercase ctext-shadow ">🍿Pipoca admin🍿</h1>
             </div>
+            
         </header>
         <div class="container my-3">
             <div class="row">
@@ -144,7 +145,7 @@
                         </div>
                         <div class="form-group col-sm-12 col-md-4">
                             <label for="popularnameade">Popularidade</label>
-                             <div class="input-group">
+                            <div class="input-group">
             	           	    <div class="input-group-prepend">
 									<span class="input-group-text"  id="basic-addon1">
 										<i class="fas fa-star"></i>

@@ -34,6 +34,9 @@ public class ManterFilmesController extends HttpServlet {
 			int idFilme = Integer.parseInt(id_filme);
 			Filme filme = buscarFilme(idFilme);
 			request.setAttribute("filme", filme);
+			SimpleDateFormat formatterE=new SimpleDateFormat("dd/MM/yyyy");
+			String dataE=formatterE.format(filme.getDataLancamento());
+			request.setAttribute("data", dataE);
 			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
 			view.forward(request, response);
 			break;

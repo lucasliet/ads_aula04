@@ -24,60 +24,103 @@
 			</div>
 		</header>
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-12" >
-					<form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow" style="background-color: rgb(197, 195, 195);">
+			<div class="row justify-content-center">
+				<div class="col-sm-10" >
+					<form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow">
 						<div class="card-header bg-dark text-white p-3">
 							<h1><i class="fas fa-film"></i>Filme</h1>
 						</div>
-						<div class="col-sm-12 col-md-6 my-auto" >
-							<img class="img-fluid" src="img/cine.png">
-						</div>
-							
-						<div class="cad-body p-3">
-							<div class="form-row">
-								<div class="form-group col-sm-12 col-md-6">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"  id="basic-addon1">ID</span>
-										</div>
-										<input type="text" class="form-control" name="titulo" value="${filme.id}">
-									</div>
-								</div>
-								<div class="form-group col-sm-12 col-md-6">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">Titulo</span>
-										</div>
-										<input type="text" class="form-control" name="titulo" value="${filme.titulo}">
-									</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-12 col-md-6">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">Diretor</span>
-										</div>
-										<input type="text" class="form-control" name="titulo" value="${filme.diretor}">
-									</div>
-								</div>
-								<div class="form-group col-sm-12 col-md-6">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">Gênero</span>
-										</div>
-										<input type="text" class="form-control" name="titulo" value="${filme.genero.nome}">
-									</div>
-								</div>
-							</div>
-							<div class="input-group">
-								<div class="input-group-prepend">
-								  <span class="input-group-text">Descrição</span>
-								</div>
-								<textarea  class="form-control" name="descricao">${filme.descricao}></textarea>
-							 </div>
 						
+						<div class="col-sm-12  my-auto" >
+							<div class="card-body p-3">
+								<div class="row my-2">
+									<img class="col-sm-12 col-md-3" src="${filme.posterPath}" alt="" srcset="">
+
+									<div class="col-sm-12 col-md-9 ">
+										<div class="form-row">
+											<div class="form-group col-sm-12 col-md-2">
+												<label for="titulo">ID</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-fingerprint"></i>
+														</span>
+													</div>
+													<input type="text" class="form-control" name="id" value="${filme.id}">
+												</div>
+											</div>
+											<div class="form-group col-sm-12 col-md-10">
+												<label for="titulo">Titulo</label>
+												<div class="input-group ">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-video"></i> 
+														</span>
+													</div>
+													<input type="text" class="form-control" name="titulo" value="${filme.titulo}">
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-12 col-md-6">
+												<label for="diretor">Diretor</label>
+												<div class="input-group ">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-address-book"></i>
+														</span>
+													</div>
+													<input type="text" class="form-control" name="diretor" value="${filme.diretor}">
+												</div>
+											</div>
+											<div class="form-group col-sm-12 col-md-6">
+												<label for="diretor">Gênero</label>
+												<div class="input-group ">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-theater-masks"></i>
+														</span>
+													</div>
+													<input type="text" class="form-control" name="genero" value="${filme.genero.nome}">
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-sm-12 col-md-6">
+												<label for="data">Data</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-calendar-day"></i>
+														</span>
+													</div>
+													<input type="text" class="form-control" name="data" value="${data}">
+												</div>
+											</div>
+											<div class="form-group col-sm-12 col-md-6">
+												<label for="popularnameade">Popularidade</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<span class="input-group-text"  id="basic-addon1">
+															<i class="fas fa-star"></i>
+														</span>
+													</div>
+													<input type="text" class="form-control" name="popularidade" value="${filme.popularidade}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<label for="titulo">Descrição</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"  id="basic-addon1">
+											<i class="fas fa-file-alt"></i>
+										</span>
+									</div>
+									<textarea  class="form-control" name="descricao" rows="4" >${filme.descricao}></textarea>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
