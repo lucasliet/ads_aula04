@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="submit" name="acao" value="exibir" class="btn btn-secondary">Exibir</button>
+                                <button type="submit" name="acao" value="page-exibir" class="btn btn-success">Exibir</button>
                             </div>
                         </div>
                     </form>
@@ -75,7 +75,7 @@
 												<i class="fas fa-video"></i> 
 											</span>
 				 						</div>
-                	                    <select name="id_exibir" class="form-control" required>
+                	                    <select name="id_atualizar" class="form-control" required>
             	                            <option value="" disabled selected>Selecione o filme</option>
 									 		${filmes} 
 										</select>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="submit" name="acao" value="atualizar_filme" class="btn btn-warning">Atualizar</button>
+                                <button type="submit" name="acao" value="page-atualizar" class="btn btn-warning">Atualizar</button>
                             </div>
                         </div>
                     </form>
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="submit" name="acao" value="inserir" class="btn btn-primary">Enviar</button>
+                        <button type="submit" name="acao" value="btn-inserir" class="btn btn-primary">Enviar</button>
                     </div>
                 </div>
             </form>
@@ -203,7 +203,7 @@
 												<i class="fas fa-video"></i> 
 											</span>
 				 						</div>
-                	                    <select name="id_exibir" class="form-control" required>
+                	                    <select name="id_excluir" class="form-control" required>
             	                            <option value="" disabled selected>Selecione o filme</option>
 									 		${filmes} 
 										</select>
@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="submit" name="acao" value="excluir_filme" class="btn btn-danger text-uppercase">excluir</button>
+                                <button type="submit" name="acao" value="page-excluir" class="btn btn-danger text-uppercase">excluir</button>
                             </div>
                         </div>
                     </form>

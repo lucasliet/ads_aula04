@@ -29,19 +29,7 @@ public class ManterFilmesController extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		switch (acao) {
-		case "exibir":
-			String id_filme = request.getParameter("id_exibir");
-			int idFilme = Integer.parseInt(id_filme);
-			Filme filme = buscarFilme(idFilme);
-			request.setAttribute("filme", filme);
-			SimpleDateFormat formatterE=new SimpleDateFormat("dd/MM/yyyy");
-			String dataE=formatterE.format(filme.getDataLancamento());
-			request.setAttribute("data", dataE);
-			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
-			view.forward(request, response);
-			break;
-			
-		case "gerenciar_filmes":
+		case "page-adm":
 			ArrayList<Genero> generos = listarGeneros();
 			String html = "";
 			for (Genero genero : generos) {
@@ -54,17 +42,40 @@ public class ManterFilmesController extends HttpServlet {
 				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
 			}
 			request.setAttribute("filmes", htmlFilmes);
-			RequestDispatcher view2 = request.getRequestDispatcher("GerenciarFilmes.jsp");
+			RequestDispatcher view2 = request.getRequestDispatcher("AdmPanel.jsp");
 			view2.forward(request, response);
 			break;
 			
-		case "atualizar_filme":
+		case "page-exibir":
+			String id_filme = request.getParameter("id_exibir");
+			int idFilme = Integer.parseInt(id_filme);
+			Filme filme = buscarFilme(idFilme);
+			request.setAttribute("filme", filme);
+			SimpleDateFormat formatterE=new SimpleDateFormat("dd/MM/yyyy");
+			String dataE=formatterE.format(filme.getDataLancamento());
+			request.setAttribute("data", dataE);
+			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
+			view.forward(request, response);
+			break;
+			
+		case "page-excluir":
+			String idExcluido = request.getParameter("id_excluir");
+			int idFilmeExcluido = Integer.parseInt(idExcluido);
+			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
+			request.setAttribute("filme", filmeExcluido);
+			SimpleDateFormat formatterExcluir=new SimpleDateFormat("dd/MM/yyyy");
+			String dataExcluir=formatterExcluir.format(filmeExcluido.getDataLancamento());
+			request.setAttribute("data", dataExcluir);
+			String btnExcluir = "";
+			request.setAttribute("btn-excluir", btnExcluir);
+			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExibirFilme.jsp");
+			viewExcluido.forward(request, response);
+			break;
+			
+		case "page-atualizar":
 			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
 			Filme filme2 = buscarFilme(idFilme3);
 			request.setAttribute("filme", filme2);
-			SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
-			String data=formatter.format(filme2.getDataLancamento());
-			request.setAttribute("data", data);
 			ArrayList<Genero> generos2 = listarGeneros();
 			String html2 = "";
 			for (Genero genero : generos2) {
@@ -74,21 +85,12 @@ public class ManterFilmesController extends HttpServlet {
 					html2 += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
 				}
 			}
-			request.setAttribute("options", html2);
+			request.setAttribute("generos", html2);
 			RequestDispatcher view3 = request.getRequestDispatcher("AtualizarFilme.jsp");
 			view3.forward(request, response);
 			break;
 			
-		case "excluir_filme":
-			String idExcluido = request.getParameter("id_excluir");
-			int idFilmeExcluido = Integer.parseInt(idExcluido);
-			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
-			request.setAttribute("filme", filmeExcluido);
-			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExcluirFilme.jsp");
-			viewExcluido.forward(request, response);
-			break;
-			
-		case "inserir":
+		case "btn-inserir":
 			String titulo = request.getParameter("titulo");
 			String diretor = request.getParameter("diretor");
 			String descricao = request.getParameter("descricao");
@@ -110,7 +112,7 @@ public class ManterFilmesController extends HttpServlet {
 			viewInserir.forward(request, response);
 			break;
 			
-		case "atualizar":
+		case "btn-atualizar":
 			int id = Integer.parseInt(request.getParameter("id"));
 			String titulo2 = request.getParameter("titulo");
 			String descricao2 = request.getParameter("descricao");
@@ -118,13 +120,14 @@ public class ManterFilmesController extends HttpServlet {
 			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
 			String data2 = request.getParameter("data");
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
-			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2);
+			String posterPath2 = request.getParameter("posterpath");
+			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2, posterPath2);
 			request.setAttribute("filme", filmeAtualizado);
 			RequestDispatcher viewAtualizar = request.getRequestDispatcher("ExibirFilme.jsp");
 			viewAtualizar.forward(request, response);
 			break;
 			
-		case "excluir":
+		case "btn-excluir":
 			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
 			System.out.println(filmeId);
 			int feedback = deletarFilme(filmeId);
@@ -194,7 +197,7 @@ public class ManterFilmesController extends HttpServlet {
 	}
 
 	public Filme atualizarFilme(int id, String titulo, String descricao, String diretor, int idGenero, String data,
-			double popularidade) throws IOException {
+			double popularidade, String posterPath) throws IOException {
 		Filme filme;
 		Genero genero;
 		filme = new Filme();
@@ -216,7 +219,7 @@ public class ManterFilmesController extends HttpServlet {
 		}
 
 		filme.setPopularidade(popularidade);
-		filme.setPosterPath("img/" + titulo + ".jpg");
+		filme.setPosterPath(posterPath);
 		FilmeService service = new FilmeService();
 		return service.atualizarFilme(filme);
 	}
