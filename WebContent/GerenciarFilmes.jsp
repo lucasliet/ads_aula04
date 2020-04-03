@@ -75,7 +75,7 @@
 												<i class="fas fa-video"></i> 
 											</span>
 				 						</div>
-                	                    <select name="id_exibir" class="form-control" required>
+                	                    <select name="id_atualizar" class="form-control" required>
             	                            <option value="" disabled selected>Selecione o filme</option>
 									 		${filmes} 
 										</select>
