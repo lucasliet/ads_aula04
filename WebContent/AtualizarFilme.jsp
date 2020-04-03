@@ -41,7 +41,7 @@
                     <p>Preencha os dados para atualizar o filme</p>
                 </div>
                 <div class="cad-body p-3">
-                	<input type="hidden" value="${filme.id}">
+                	<input type="hidden" name="id" value="${filme.id}">
                 	<div class="row">
                 	<img class="col-sm-12 col-md-5 col-lg-3 mb-3 img-fluid" src="${filme.posterPath}">
 	                	<div class="col">

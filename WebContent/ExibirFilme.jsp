@@ -118,11 +118,28 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">
-									<i class="fas fa-file-alt"></i>
-								</span>
+									        <i class="fas fa-file-alt"></i>
+								        </span>
                                     </div>
                                     <textarea class="form-control" name="descricao" rows="4">${filme.descricao}></textarea>
                                 </div>
+								${btn-excluir} 
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="modalExcluirLongTitle">Tem certeza que deseja excluir? </h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                  <button type="submit" value="btn-excluir" class="btn btn-danger text-uppercase">Excluir</button>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     </form>

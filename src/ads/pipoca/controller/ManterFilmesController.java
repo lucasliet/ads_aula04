@@ -65,8 +65,8 @@ public class ManterFilmesController extends HttpServlet {
 			request.setAttribute("filme", filmeExcluido);
 			SimpleDateFormat formatterExcluir=new SimpleDateFormat("dd/MM/yyyy");
 			String dataExcluir=formatterExcluir.format(filmeExcluido.getDataLancamento());
-			request.setAttribute("data", dataExcluir);
-			String btnExcluir = "";
+			request.setAttribute("data", dataExcluir);		
+			String btnExcluir = " <button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>";
 			request.setAttribute("btn-excluir", btnExcluir);
 			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExibirFilme.jsp");
 			viewExcluido.forward(request, response);
@@ -118,7 +118,13 @@ public class ManterFilmesController extends HttpServlet {
 			String descricao2 = request.getParameter("descricao");
 			String diretor2 = request.getParameter("diretor");
 			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
-			String data2 = request.getParameter("data");
+			SimpleDateFormat sql2 = new SimpleDateFormat("yyyy-MM-dd");
+			Date data2 = null;
+			try {
+				data2 = sql2.parse(request.getParameter("data"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
 			String posterPath2 = request.getParameter("posterpath");
 			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2, posterPath2);
@@ -196,7 +202,7 @@ public class ManterFilmesController extends HttpServlet {
 		return service.inserirFilme(filme);
 	}
 
-	public Filme atualizarFilme(int id, String titulo, String descricao, String diretor, int idGenero, String data,
+	public Filme atualizarFilme(int id, String titulo, String descricao, String diretor, int idGenero, Date data,
 			double popularidade, String posterPath) throws IOException {
 		Filme filme;
 		Genero genero;
@@ -209,15 +215,15 @@ public class ManterFilmesController extends HttpServlet {
 		GeneroDAO generoDAO = new GeneroDAO();
 		genero = generoDAO.buscarGenero(idGenero);
 		filme.setGenero(genero);
-
+		/*
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			filme.setDataLancamento(formatter.parse(data));
 		} catch (ParseException e) {
 			e.printStackTrace();
 			filme.setDataLancamento(null);
-		}
-
+		}*/
+		filme.setDataLancamento(data);
 		filme.setPopularidade(popularidade);
 		filme.setPosterPath(posterPath);
 		FilmeService service = new FilmeService();
