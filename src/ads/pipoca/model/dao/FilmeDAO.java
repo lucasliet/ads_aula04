@@ -15,7 +15,7 @@ public class FilmeDAO {
         ArrayList<Filme> filmes = new ArrayList<>();
         String sql = "SELECT f.id, titulo, descricao, diretor, posterpath, "
                 + "popularidade, data_lancamento, id_genero, nome "
-                + "FROM FILME f JOIN GENERO g ON f.id_genero = g.id ORDER BY id";
+                + "FROM FILME f JOIN GENERO g ON f.id_genero = g.id ORDER BY titulo";
 
         try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement pst = conn.prepareStatement(sql);
