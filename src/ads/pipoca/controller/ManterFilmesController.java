@@ -1,7 +1,6 @@
 package ads.pipoca.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.pipoca.model.dao.GeneroDAO;
 import ads.pipoca.model.entity.Filme;
 import ads.pipoca.model.entity.Genero;
 import ads.pipoca.model.service.FilmeService;
@@ -51,10 +49,13 @@ public class ManterFilmesController extends HttpServlet {
 			int idFilme = Integer.parseInt(id_filme);
 			Filme filme = buscarFilme(idFilme);
 			request.setAttribute("filme", filme);
+			
 			SimpleDateFormat formatterE=new SimpleDateFormat("dd/MM/yyyy");
 			String dataE=formatterE.format(filme.getDataLancamento());
 			request.setAttribute("data", dataE);
-			RequestDispatcher view = request.getRequestDispatcher("ExibirFilme.jsp");
+			
+			request.setAttribute("titulo", "🍿Exibir Filme🍿");
+			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
 			
@@ -63,11 +64,14 @@ public class ManterFilmesController extends HttpServlet {
 			int idFilmeExcluido = Integer.parseInt(idExcluido);
 			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
 			request.setAttribute("filme", filmeExcluido);
+			
 			SimpleDateFormat formatterExcluir=new SimpleDateFormat("dd/MM/yyyy");
 			String dataExcluir=formatterExcluir.format(filmeExcluido.getDataLancamento());
-			request.setAttribute("data", dataExcluir);		
+			request.setAttribute("data", dataExcluir);
+			
+			request.setAttribute("titulo", "🍿Excluir Filme🍿");
 			String btnExcluir = " <button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>";
-			request.setAttribute("btn-excluir", btnExcluir);
+			request.setAttribute("btn", btnExcluir);
 			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExibirFilme.jsp");
 			viewExcluido.forward(request, response);
 			break;
@@ -94,6 +98,7 @@ public class ManterFilmesController extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			String diretor = request.getParameter("diretor");
 			String descricao = request.getParameter("descricao");
+			
 			SimpleDateFormat sql = new SimpleDateFormat("yyyy-MM-dd");
 			Date data1 = null;
 			try {
@@ -101,23 +106,30 @@ public class ManterFilmesController extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+			
 			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
 			int idGenero = Integer.parseInt(request.getParameter("genero"));
 			String posterPath = request.getParameter("posterpath");
 			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade, posterPath);
 			Filme filmeInserido = buscarFilme(idInserido);
-			System.out.println(filmeInserido);
 			request.setAttribute("filme", filmeInserido);
-			RequestDispatcher viewInserir = request.getRequestDispatcher("ExibirFilme.jsp");
+			request.setAttribute("titulo", "🍿Filme Inserido🍿");
+			
+			SimpleDateFormat formatterI=new SimpleDateFormat("dd/MM/yyyy");
+			String dataI=formatterI.format(filmeInserido.getDataLancamento());
+			request.setAttribute("data", dataI);
+			
+			RequestDispatcher viewInserir = request.getRequestDispatcher("Filme.jsp");
 			viewInserir.forward(request, response);
 			break;
 			
 		case "btn-atualizar":
-			int id = Integer.parseInt(request.getParameter("id"));
+			int id = Integer.parseInt(request.getParameter("id_atualizar"));
 			String titulo2 = request.getParameter("titulo");
 			String descricao2 = request.getParameter("descricao");
 			String diretor2 = request.getParameter("diretor");
 			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
+			
 			SimpleDateFormat sql2 = new SimpleDateFormat("yyyy-MM-dd");
 			Date data2 = null;
 			try {
@@ -125,17 +137,23 @@ public class ManterFilmesController extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+			
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
 			String posterPath2 = request.getParameter("posterpath");
 			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2, posterPath2);
 			request.setAttribute("filme", filmeAtualizado);
-			RequestDispatcher viewAtualizar = request.getRequestDispatcher("ExibirFilme.jsp");
+			
+			SimpleDateFormat formatterA=new SimpleDateFormat("dd/MM/yyyy");
+			String dataA=formatterA.format(filmeAtualizado.getDataLancamento());
+			request.setAttribute("data", dataA);
+			
+			request.setAttribute("titulo", "🍿Filme Atualizado🍿");
+			RequestDispatcher viewAtualizar = request.getRequestDispatcher("Filme.jsp");
 			viewAtualizar.forward(request, response);
 			break;
 			
 		case "btn-excluir":
 			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
-			System.out.println(filmeId);
 			int feedback = deletarFilme(filmeId);
 			request.setAttribute("feedback", feedback);
 			break;
@@ -183,8 +201,8 @@ public class ManterFilmesController extends HttpServlet {
 		filme.setDescricao(descricao);
 		filme.setDiretor(diretor);
 
-		GeneroDAO generoDAO = new GeneroDAO();
-		genero = generoDAO.buscarGenero(idGenero);
+		GeneroService generoService = new GeneroService();
+		genero = generoService.buscarGenero(idGenero);
 		filme.setGenero(genero);
 
 		/*DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -212,8 +230,8 @@ public class ManterFilmesController extends HttpServlet {
 		filme.setDescricao(descricao);
 		filme.setDiretor(diretor);
 
-		GeneroDAO generoDAO = new GeneroDAO();
-		genero = generoDAO.buscarGenero(idGenero);
+		GeneroService generoService = new GeneroService();
+		genero = generoService.buscarGenero(idGenero);
 		filme.setGenero(genero);
 		/*
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
