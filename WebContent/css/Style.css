@@ -1,9 +1,9 @@
 body{
-    background-image: url(img/body.jpg);
+    background-image: url(../img/body.jpg);
 }
 
 header .cbg-rolo {
-    background-image: url(img/roloFilme.png);
+    background-image: url(../img/roloFilme.png);
     background-position: center;
     background-size: contain;
 }

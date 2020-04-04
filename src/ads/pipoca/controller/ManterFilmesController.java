@@ -72,7 +72,7 @@ public class ManterFilmesController extends HttpServlet {
 			request.setAttribute("titulo", "🍿Excluir Filme🍿");
 			String btnExcluir = " <button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>";
 			request.setAttribute("btn", btnExcluir);
-			RequestDispatcher viewExcluido = request.getRequestDispatcher("ExibirFilme.jsp");
+			RequestDispatcher viewExcluido = request.getRequestDispatcher("Filme.jsp");
 			viewExcluido.forward(request, response);
 			break;
 			
@@ -141,6 +141,7 @@ public class ManterFilmesController extends HttpServlet {
 			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
 			String posterPath2 = request.getParameter("posterpath");
 			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2, posterPath2);
+			System.out.println(filmeAtualizado);
 			request.setAttribute("filme", filmeAtualizado);
 			
 			SimpleDateFormat formatterA=new SimpleDateFormat("dd/MM/yyyy");
@@ -216,6 +217,7 @@ public class ManterFilmesController extends HttpServlet {
 		
 		filme.setPopularidade(popularidade);
 		filme.setPosterPath(posterPath);
+		System.out.println(posterPath);
 		FilmeService service = new FilmeService();
 		return service.inserirFilme(filme);
 	}
