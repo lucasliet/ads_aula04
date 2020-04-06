@@ -54,7 +54,7 @@ public class ManterFilmesController extends HttpServlet {
 			String dataE=formatterE.format(filme.getDataLancamento());
 			request.setAttribute("data", dataE);
 			
-			request.setAttribute("titulo", "🍿Exibir Filme🍿");
+			request.setAttribute("titulo", "Exibir Filme");
 			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
 			view.forward(request, response);
 			break;
@@ -69,7 +69,7 @@ public class ManterFilmesController extends HttpServlet {
 			String dataExcluir=formatterExcluir.format(filmeExcluido.getDataLancamento());
 			request.setAttribute("data", dataExcluir);
 			
-			request.setAttribute("titulo", "🍿Excluir Filme🍿");
+			request.setAttribute("titulo", "Excluir Filme");
 			String btnExcluir = " <button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>";
 			request.setAttribute("btn", btnExcluir);
 			RequestDispatcher viewExcluido = request.getRequestDispatcher("Filme.jsp");
@@ -113,7 +113,7 @@ public class ManterFilmesController extends HttpServlet {
 			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade, posterPath);
 			Filme filmeInserido = buscarFilme(idInserido);
 			request.setAttribute("filme", filmeInserido);
-			request.setAttribute("titulo", "🍿Filme Inserido🍿");
+			request.setAttribute("titulo", "Filme Inserido");
 			
 			SimpleDateFormat formatterI=new SimpleDateFormat("dd/MM/yyyy");
 			String dataI=formatterI.format(filmeInserido.getDataLancamento());
@@ -148,7 +148,7 @@ public class ManterFilmesController extends HttpServlet {
 			String dataA=formatterA.format(filmeAtualizado.getDataLancamento());
 			request.setAttribute("data", dataA);
 			
-			request.setAttribute("titulo", "🍿Filme Atualizado🍿");
+			request.setAttribute("titulo", "Filme Atualizado");
 			RequestDispatcher viewAtualizar = request.getRequestDispatcher("Filme.jsp");
 			viewAtualizar.forward(request, response);
 			break;

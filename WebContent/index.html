@@ -3,23 +3,64 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Gerenciamento de Filmes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	
+	<title>Login</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/Style.css">
+	
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+	<script src="https://kit.fontawesome.com/da77f520d1.js" crossorigin="anonymous"></script>
+	<style>
+		body {
+			background: url(img/fundoLogin.jpg);
+			background-size:cover;
+		}
+	</style>
+
 </head>
 
 <body>
-	<div class="bg-dark text-center p-3 text-light">
-		<h1>Pipoca ADMIN</h1>
-	</div>
+	<header>
+		<div class="col-sm-12 col-md-3 my-auto">
+			<img class="img-fluid" src="img/cine.png">
+		</div>
+	</header>
 	<div class="container">
-		<div class="text-center mt-5">
-			<form action="manter_filmes.do" method="GET" class="my-5">
-				<button type="submit" name="acao" value="page-adm" class="btn btn-primary p-5 shadow">Painel
-					administrador</button>
-			</form>
-			<img src="img/cine.png" alt="">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-5 bg-light mt-4">
+				<form action="manter_filmes.do" method="GET" class="my-5">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">
+									<i class="fas fa-user"></i>
+								</span>
+							</div>
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email" required> 
+						</div>
+					</div>	
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">
+									<i class="fas fa-unlock-alt"></i>
+								</span>
+							</div>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha" required>
+						</div>
+					</div>
+					<div class="form-group form-check">
+					<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<label class="form-check-label" for="exampleCheck1">Clique em mim</label>
+					</div>
+						
+					<button type="submit" name="acao" value="page-adm" class="btn btn-primary float-right mb-4">Enviar</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>
