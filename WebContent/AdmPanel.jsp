@@ -31,6 +31,20 @@
 
     </header>
     <div class="container my-3">
+       	<form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow bg-light">
+            <div class="card-header bg-dark text-white p-3">
+            	<div class="row">
+            		<div class="col-md-9">
+		                <h1><i class="fas fa-film"></i> Listar Filmes</h1>
+		                <p>Lista de todos os filmes do banco</p>
+            		</div>
+            		<div class="col-md-3 my-auto pr-4">
+	                	<button type="submit" name="acao" value="page-todos"
+	                                class="btn btn-light float-right">Exibir</button>
+            		</div>
+                </div>                
+            </div>
+        </form>  
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <form action="manter_filmes.do" method="GET" class="card my-3 rounded shadow bg-light">
@@ -38,7 +52,7 @@
                         <h1><i class="fas fa-film"></i> Exibir Filme</h1>
                         <p>Selecione um Filme para ser exibido</p>
                     </div>
-                    <div class="cad-body p-3">
+                    <div class="card-body p-3">
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="id_exibir">Filme</label>
@@ -71,7 +85,7 @@
                         <h1><i class="fas fa-film"></i> Atualizar Filme</h1>
                         <p>Selecione o Filme para ser alterado</p>
                     </div>
-                    <div class="cad-body p-3">
+                    <div class="card-body p-3">
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="id_atualizar">Filme</label>
@@ -104,7 +118,7 @@
                 <h1><i class="fas fa-film"></i> Inserir Filme</h1>
                 <p>Preencha os dados para inserir um novo filme</p>
             </div>
-            <div class="cad-body p-3">
+            <div class="card-body p-3">
                 <div class="form-row">
                     <div class="form-group col-sm-12 col-md-6">
                         <label for="titulo">Titulo</label>
@@ -211,7 +225,7 @@
                         <p>Selecione o Filme para ser <span
                                 class="badge badge-danger p-1 text-uppercase	">excluído</span></p>
                     </div>
-                    <div class="cad-body p-3">
+                    <div class="card-body p-3">
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="id_excluir">Filme</label>
