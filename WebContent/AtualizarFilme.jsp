@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +26,7 @@
 			<i class="fas fa-arrow-circle-left"></i>
 		</a>
 		<div class="bg-dark cbg-rolo text-white text-center p-2">
-			<h1 class="text-bold text-uppercase ctext-shadow">🍿Atualizar Filme🍿</h1>
+			<h1 class="text-bold text-uppercase ctext-shadow">Atualizar Filme</h1>
 		</div>
 	</header>
 	<div class="container">
@@ -106,10 +107,10 @@
 										<select name="genero" class="form-control" required>
 											<c:forEach var="genero" items="${generos}">
 												<c:choose>
-													<c:when test="${genero.id == filme.genero.id}">
+													<c:when test="${genero.id == filme.genero.id}"><!-- IF -->
 														<option value="${genero.id}" selected>${genero.nome}</option>
 													</c:when>
-													<c:otherwise>
+													<c:otherwise> <!-- ELSE -->
 														<option value="${genero.id}">${genero.nome}</option>
 													</c:otherwise>
 												</c:choose>

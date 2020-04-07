@@ -26,6 +26,7 @@ public class ManterFilmesController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String acao = request.getParameter("acao");
+		
 		Filme filme = null;
 		int idFilme, idGenero;
 		String titulo, diretor, descricao, posterPath = null;
@@ -45,6 +46,12 @@ public class ManterFilmesController extends HttpServlet {
 			filmes = listarFilmes();
 			request.setAttribute("filmes", filmes);
 			saida = "AdmPanel.jsp";
+			break;
+			
+		case "page-todos":
+			filmes = listarFilmes();
+			request.setAttribute("filmes", filmes);
+			saida = "FilmesLista.jsp";
 			break;
 			
 		case "page-exibir":
@@ -182,7 +189,6 @@ public class ManterFilmesController extends HttpServlet {
 		
 		filme.setPopularidade(popularidade);
 		filme.setPosterPath(posterPath);
-		System.out.println(posterPath);
 		FilmeService service = new FilmeService();
 		return service.inserirFilme(filme);
 	}
