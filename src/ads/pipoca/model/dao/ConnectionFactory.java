@@ -8,18 +8,17 @@ public class ConnectionFactory {
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			// porque este erro nao pode ser prevenido via programa usa-se RuntimeException,
-			// que é unchecked.
 			throw new RuntimeException(e);
 		}
 	}
 
 	public static Connection getConnection() throws IOException {
 		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/pipocadb?useTimezone=true&serverTimezone=UTC&"
-					+ "user=Alunos&password=alunos&useSSL=false");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/pipocadb?"
+					+ "useTimezone=true&serverTimezone=UTC&user=Alunos&password=alunos");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new IOException(e);
