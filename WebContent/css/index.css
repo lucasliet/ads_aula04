@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+body {
+	background-image: url(../img/fundoLogin.jpg);
+ 	background-size: cover ;
+	color: white;
+	
+}
+
+/*
+@media all and (min-width: 499px) {
+    body{
+        background-image: url(../img/fundoLogin.jpg);
+        background-size: 450px;
+    }
+}
+*/
+.card{
+	height: 370px;
+	margin-top: auto;
+	margin-bottom: auto;
+	width: 400px;
+	background-color: rgba(0,0,0,0.8) !important;
+}
