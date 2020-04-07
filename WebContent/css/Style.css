@@ -17,9 +17,9 @@ header .ctext-shadow{
 }
 header .cbtn-back{
     position: absolute;
-    margin-left: 2rel;
-    margin-top: 5px;
+    font-size: 2.5em;
+    text-decoration: none;
 }
-header .cbtn-back a :hover {color: #eee !important;}
-header .cbtn-back a :active{color: #bbb !important}
-
+header .cbtn-back :hover {color: #eee !important}
+header .cbtn-back :active{color: #bbb !important}
+img {border-radius:15px}

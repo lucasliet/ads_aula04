@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,13 +21,9 @@
 
 <body>
     <header>
-        <button class="btn cbtn-back">
-            <h1>
-                <a href="manter_filmes.do?acao=page-adm" class="text-white">
-                    <i class="fas fa-arrow-circle-left"></i>
-                </a>
-            </h1>
-        </button>
+        <a href="manter_filmes.do?acao=page-adm" class="btn cbtn-back text-white">
+			<i class="fas fa-arrow-circle-left"></i>
+		</a>
         <div class="bg-dark cbg-rolo text-white text-center p-2">
             <h1 class="text-bold text-uppercase ctext-shadow">${titulo}</h1>
         </div>
@@ -102,7 +100,9 @@
                                                         <i class="fas fa-calendar-day"></i>
                                                     </span>
                                                 </div>
-                                                <p class="form-control" id="data">${data}</p>
+                                                <p class="form-control" id="data">
+                                                <fmt:formatDate value="${filme.dataLancamento}" pattern="dd/MM/yyyy"/>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-12 col-md-6">
@@ -113,7 +113,9 @@
                                                         <i class="fas fa-star"></i>
                                                     </span>
                                                 </div>
-                                                <p class="form-control" id="popularidade">${filme.popularidade}</p>
+                                                <p class="form-control" id="popularidade">
+                                                <fmt:formatNumber value="${filme.popularidade}" minFractionDigits="2" maxFractionDigits="2"/>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

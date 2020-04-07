@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,9 +22,9 @@
 
 <body>
     <header>
-        <button class="btn cbtn-back ">
-            <h1><a href="index.html" class="text-white"><i class="fas fa-arrow-circle-left"></i></a></h1>
-        </button>
+		<a href="index.html" class="btn cbtn-back text-white">
+			<i class="fas fa-arrow-circle-left"></i>
+		</a>
         <div class="bg-dark cbg-rolo text-white text-center p-2">
             <h1 class="text-bold text-uppercase ctext-shadow ">🍿Pipoca admin🍿</h1>
         </div>
@@ -48,7 +50,9 @@
                                     </div>
                                     <select name="id_exibir" class="form-control" required>
                                         <option value="" disabled selected>Selecione o filme</option>
-                                        ${filmes}
+                                        <c:forEach var="filme" items="${filmes}">
+											<option value="${filme.id}">${filme.titulo}</option>
+										</c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -79,7 +83,9 @@
                                     </div>
                                     <select name="id_atualizar" class="form-control" required>
                                         <option value="" disabled selected>Selecione o filme</option>
-                                        ${filmes}
+                                        <c:forEach var="filme" items="${filmes}">
+											<option value="${filme.id}">${filme.titulo}</option>
+										</c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -132,7 +138,7 @@
                                 <i class="fas fa-file-alt"></i>
                             </span>
                         </div>
-                        <textarea type="text" class="form-control" name="descricao"
+                        <textarea class="form-control" name="descricao"
                             placeholder="O dedicado funcionário executivo da FedEx, Chuck Noland, viaja a trabalho para a Malásia quando o avião da empresa cai sobre o Oceano Pacífico durante uma tempestade. Como o único sobrevivente do acidente, Chuck vai parar em uma ilha deserta. Quando suas tentativas de socorro se esgotam, Chuck aprende a sobreviver na ilha."
                             rows=3 required></textarea>
                     </div>
@@ -157,7 +163,7 @@
                                     <i class="fas fa-star"></i>
                                 </span>
                             </div>
-                            <input type="number" class="form-control" name="popularidade" max=1000 placeholder="60.5"
+                            <input type="number" class="form-control" name="popularidade" min=0 max=1000 step=0.01 placeholder="60.5"
                                 required>
                         </div>
                     </div>
@@ -171,7 +177,9 @@
                             </div>
                             <select name="genero" class="form-control" required>
                                 <option value="" disabled selected>Selecione o genero</option>
-                                ${generos}
+                                <c:forEach var="genero" items="${generos}">
+									<option value="${genero.id}">${genero.nome}</option>
+								</c:forEach>
                             </select>
                         </div>
                     </div>
@@ -215,7 +223,9 @@
                                     </div>
                                     <select name="id_excluir" class="form-control" required>
                                         <option value="" disabled selected>Selecione o filme</option>
-                                        ${filmes}
+                                        <c:forEach var="filme" items="${filmes}">
+											<option value="${filme.id}">${filme.titulo}</option>
+										</c:forEach>
                                     </select>
                                 </div>
                             </div>

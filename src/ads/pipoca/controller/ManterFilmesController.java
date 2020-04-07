@@ -26,140 +26,111 @@ public class ManterFilmesController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String acao = request.getParameter("acao");
-
+		Filme filme = null;
+		int idFilme, idGenero;
+		String titulo, diretor, descricao, posterPath = null;
+		SimpleDateFormat sqlDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date data = null;
+		double popularidade;
+		
+		ArrayList<Filme> filmes = null;
+		ArrayList<Genero> generos = null;
+		
+		String saida = null;
+		
 		switch (acao) {
 		case "page-adm":
-			ArrayList<Genero> generos = listarGeneros();
-			String html = "";
-			for (Genero genero : generos) {
-				html += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
-			}
-			request.setAttribute("generos", html);
-			ArrayList<Filme> filmes = listarFilmes();
-			String htmlFilmes = "";
-			for (Filme filme1 : filmes) {
-				htmlFilmes += "<option value='" + filme1.getId() + "'>" + filme1.getTitulo() + "</option>\n";
-			}
-			request.setAttribute("filmes", htmlFilmes);
-			RequestDispatcher view2 = request.getRequestDispatcher("AdmPanel.jsp");
-			view2.forward(request, response);
+			generos = listarGeneros();
+			request.setAttribute("generos", generos);
+			filmes = listarFilmes();
+			request.setAttribute("filmes", filmes);
+			saida = "AdmPanel.jsp";
 			break;
 			
 		case "page-exibir":
-			String id_filme = request.getParameter("id_exibir");
-			int idFilme = Integer.parseInt(id_filme);
-			Filme filme = buscarFilme(idFilme);
+			idFilme = Integer.parseInt(request.getParameter("id_exibir"));
+			filme = buscarFilme(idFilme);
 			request.setAttribute("filme", filme);
-			
-			SimpleDateFormat formatterE=new SimpleDateFormat("dd/MM/yyyy");
-			String dataE=formatterE.format(filme.getDataLancamento());
-			request.setAttribute("data", dataE);
-			
 			request.setAttribute("titulo", "Exibir Filme");
-			RequestDispatcher view = request.getRequestDispatcher("Filme.jsp");
-			view.forward(request, response);
+			saida = "Filme.jsp";
 			break;
 			
 		case "page-excluir":
-			String idExcluido = request.getParameter("id_excluir");
-			int idFilmeExcluido = Integer.parseInt(idExcluido);
-			Filme filmeExcluido = buscarFilme(idFilmeExcluido);
-			request.setAttribute("filme", filmeExcluido);
-			
-			SimpleDateFormat formatterExcluir=new SimpleDateFormat("dd/MM/yyyy");
-			String dataExcluir=formatterExcluir.format(filmeExcluido.getDataLancamento());
-			request.setAttribute("data", dataExcluir);
-			
+			idFilme = Integer.parseInt(request.getParameter("id_excluir"));
+			filme = buscarFilme(idFilme);
+			request.setAttribute("filme", filme);
 			request.setAttribute("titulo", "Excluir Filme");
-			String btnExcluir = " <button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>";
-			request.setAttribute("btn", btnExcluir);
-			RequestDispatcher viewExcluido = request.getRequestDispatcher("Filme.jsp");
-			viewExcluido.forward(request, response);
+			request.setAttribute("btn", "<button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>");
+		    saida = "Filme.jsp";
 			break;
 			
 		case "page-atualizar":
-			int idFilme3 = Integer.parseInt(request.getParameter("id_atualizar"));
-			Filme filme2 = buscarFilme(idFilme3);
-			request.setAttribute("filme", filme2);
-			ArrayList<Genero> generos2 = listarGeneros();
-			String html2 = "";
-			for (Genero genero : generos2) {
-				if (genero.getId() == filme2.getGenero().getId()) {
-					html2 += "<option value='" + genero.getId() + "' selected>" + genero.getNome() + "</option>\n";
-				} else {
-					html2 += "<option value='" + genero.getId() + "'>" + genero.getNome() + "</option>\n";
-				}
-			}
-			request.setAttribute("generos", html2);
-			RequestDispatcher view3 = request.getRequestDispatcher("AtualizarFilme.jsp");
-			view3.forward(request, response);
+			idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
+			filme = buscarFilme(idFilme);
+			request.setAttribute("filme", filme);
+			generos = listarGeneros();
+			request.setAttribute("generos", generos);
+			saida = "AtualizarFilme.jsp";
 			break;
 			
 		case "btn-inserir":
-			String titulo = request.getParameter("titulo");
-			String diretor = request.getParameter("diretor");
-			String descricao = request.getParameter("descricao");
+			titulo = request.getParameter("titulo");
+			diretor = request.getParameter("diretor");
+			descricao = request.getParameter("descricao");
 			
-			SimpleDateFormat sql = new SimpleDateFormat("yyyy-MM-dd");
-			Date data1 = null;
 			try {
-				data1 = sql.parse(request.getParameter("data"));
+				data = sqlDate.parse(request.getParameter("data"));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			
-			double popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			int idGenero = Integer.parseInt(request.getParameter("genero"));
-			String posterPath = request.getParameter("posterpath");
-			int idInserido = inserirFilme(titulo, descricao, diretor, idGenero, data1, popularidade, posterPath);
-			Filme filmeInserido = buscarFilme(idInserido);
+			popularidade = Double.parseDouble(request.getParameter("popularidade"));
+			idGenero = Integer.parseInt(request.getParameter("genero"));
+			posterPath = request.getParameter("posterpath");
+			
+			idFilme = inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
+			Filme filmeInserido = buscarFilme(idFilme);
+			
 			request.setAttribute("filme", filmeInserido);
 			request.setAttribute("titulo", "Filme Inserido");
-			
-			SimpleDateFormat formatterI=new SimpleDateFormat("dd/MM/yyyy");
-			String dataI=formatterI.format(filmeInserido.getDataLancamento());
-			request.setAttribute("data", dataI);
-			
-			RequestDispatcher viewInserir = request.getRequestDispatcher("Filme.jsp");
-			viewInserir.forward(request, response);
+			saida = "Filme.jsp";
 			break;
 			
 		case "btn-atualizar":
-			int id = Integer.parseInt(request.getParameter("id_atualizar"));
-			String titulo2 = request.getParameter("titulo");
-			String descricao2 = request.getParameter("descricao");
-			String diretor2 = request.getParameter("diretor");
-			int idGenero2 = Integer.parseInt(request.getParameter("genero"));
+			idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
+			titulo = request.getParameter("titulo");
+			descricao = request.getParameter("descricao");
+			diretor = request.getParameter("diretor");
+			idGenero = Integer.parseInt(request.getParameter("genero"));
 			
-			SimpleDateFormat sql2 = new SimpleDateFormat("yyyy-MM-dd");
-			Date data2 = null;
 			try {
-				data2 = sql2.parse(request.getParameter("data"));
+				data = sqlDate.parse(request.getParameter("data"));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			
-			double popularidade2 = Double.parseDouble(request.getParameter("popularidade"));
-			String posterPath2 = request.getParameter("posterpath");
-			Filme filmeAtualizado = atualizarFilme(id, titulo2, descricao2, diretor2, idGenero2, data2, popularidade2, posterPath2);
-			System.out.println(filmeAtualizado);
-			request.setAttribute("filme", filmeAtualizado);
-			
-			SimpleDateFormat formatterA=new SimpleDateFormat("dd/MM/yyyy");
-			String dataA=formatterA.format(filmeAtualizado.getDataLancamento());
-			request.setAttribute("data", dataA);
-			
+			popularidade = Double.parseDouble(request.getParameter("popularidade"));
+			posterPath = request.getParameter("posterpath");
+			filme = atualizarFilme(idFilme, titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
+			request.setAttribute("filme", filme);
 			request.setAttribute("titulo", "Filme Atualizado");
-			RequestDispatcher viewAtualizar = request.getRequestDispatcher("Filme.jsp");
-			viewAtualizar.forward(request, response);
+			saida = "Filme.jsp";
 			break;
 			
 		case "btn-excluir":
 			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
 			int feedback = deletarFilme(filmeId);
+			generos = listarGeneros();
+			filmes = listarFilmes();
 			request.setAttribute("feedback", feedback);
+			request.setAttribute("generos", generos);
+			request.setAttribute("filmes", filmes);
+			saida = "AdmPanel.jsp";
+			
 			break;
 		}
+		RequestDispatcher view = request.getRequestDispatcher(saida);
+		view.forward(request, response);
 
 	}
 
@@ -207,13 +178,6 @@ public class ManterFilmesController extends HttpServlet {
 		genero = generoService.buscarGenero(idGenero);
 		filme.setGenero(genero);
 
-		/*DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			filme.setDataLancamento(formatter.parse(data));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			filme.setDataLancamento(null);
-		}*/
 		filme.setDataLancamento(data);
 		
 		filme.setPopularidade(popularidade);
@@ -236,14 +200,7 @@ public class ManterFilmesController extends HttpServlet {
 		GeneroService generoService = new GeneroService();
 		genero = generoService.buscarGenero(idGenero);
 		filme.setGenero(genero);
-		/*
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			filme.setDataLancamento(formatter.parse(data));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			filme.setDataLancamento(null);
-		}*/
+
 		filme.setDataLancamento(data);
 		filme.setPopularidade(popularidade);
 		filme.setPosterPath(posterPath);

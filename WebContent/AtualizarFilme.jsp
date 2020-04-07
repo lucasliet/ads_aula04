@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,12 +21,9 @@
 
 <body>
 	<header>
-		<button class="btn cbtn-back">
-			<h1>
-				<a href="manter_filmes.do?acao=page-adm" class="text-white"><i class="fas fa-arrow-circle-left"></i>
-				</a>
-			</h1>
-		</button>
+		<a href="manter_filmes.do?acao=page-adm" class="btn cbtn-back text-white">
+			<i class="fas fa-arrow-circle-left"></i>
+		</a>
 		<div class="bg-dark cbg-rolo text-white text-center p-2">
 			<h1 class="text-bold text-uppercase ctext-shadow">🍿Atualizar Filme🍿</h1>
 		</div>
@@ -105,7 +104,16 @@
 											</span>
 										</div>
 										<select name="genero" class="form-control" required>
-											${generos}
+											<c:forEach var="genero" items="${generos}">
+												<c:choose>
+													<c:when test="${genero.id == filme.genero.id}">
+														<option value="${genero.id}" selected>${genero.nome}</option>
+													</c:when>
+													<c:otherwise>
+														<option value="${genero.id}">${genero.nome}</option>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
