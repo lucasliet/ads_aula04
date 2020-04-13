@@ -33,7 +33,7 @@
 	</header>
 	<div class="container">
 		<div class="row justify-content-center">
-			<table class="table my-3 col-md-10 rounded shadow">
+			<table class="table table-stripped my-3 col-md-10 rounded shadow">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>
