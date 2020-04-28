@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="pipoca-filmes:war exploded">
+    <output-path>$PROJECT_DIR$/build/artifacts/pipoca_filmes_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="pipoca-filmes/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pipoca-filmes" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

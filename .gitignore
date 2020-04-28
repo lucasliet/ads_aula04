@@ -1,1 +1,7 @@
+# Pasta Build do Eclipse
 /build/
+
+# Caches das SO
+.DS_Store
+thumbs.db
+desktop.ini
