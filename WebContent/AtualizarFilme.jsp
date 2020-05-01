@@ -22,14 +22,14 @@
 
 <body>
 	<header>
-		<a href="manter_filmes.do?acao=page-adm" class="btn cbtn-back text-white">
-			<i class="fas fa-arrow-circle-left"></i>
-		</a>
-		<div class="bg-dark cbg-rolo text-white text-center p-2">
-			<h1 class="text-bold text-uppercase ctext-shadow">Atualizar Filme</h1>
-		</div>
+		<c:import url="Menu.jsp"/>
 	</header>
 	<div class="container">
+		<div class="header">
+            <div class="cbg-rolo text-white text-center p-2">
+                <h1 class="text-bold text-uppercase ctext-shadow ">🍿Atualizar filme🍿</h1>
+            </div>
+        </div>
 		<div class="row justify-content-center">
 			<form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow bg-light">
 				<div class="card-header bg-dark text-white p-3">

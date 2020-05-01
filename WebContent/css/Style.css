@@ -1,5 +1,4 @@
 
-
 body{
     background-image: url(../img/body.jpg);
 }
@@ -12,11 +11,5 @@ header .cbg-rolo {
 header .ctext-shadow{
     text-shadow: 5px 4px #222;
 }
-header .cbtn-back{
-    position: absolute;
-    font-size: 2.5em;
-    text-decoration: none;
-}
-header .cbtn-back :hover {color: #eee !important}
-header .cbtn-back :active{color: #bbb !important}
-img {border-radius:15px}
+
+

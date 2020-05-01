@@ -23,15 +23,14 @@
 </head>
 <body>
 	<header>
-		<a href="manter_filmes.do?acao=page-adm"
-			class="btn cbtn-back text-white"> <i
-			class="fas fa-arrow-circle-left"></i>
-		</a>
-		<div class="bg-dark cbg-rolo text-white text-center p-2">
-			<h1 class="text-bold text-uppercase ctext-shadow">Lista de Filmes</h1>
-		</div>
+		<c:import url="Menu.jsp"/>
 	</header>
 	<div class="container">
+		<div class="header">
+            <div class="cbg-rolo text-white text-center p-2">
+                <h1 class="text-bold text-uppercase ctext-shadow ">🍿Lista de filme🍿</h1>
+            </div>
+        </div>
 		<div class="row justify-content-center">
 			<table class="table table-light my-3 col-md-10 rounded shadow">
 				<thead class="thead-dark">
