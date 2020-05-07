@@ -19,41 +19,42 @@
 	crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/da77f520d1.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/Style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<header>
 		<c:import url="Menu.jsp"/>
+		<div class="bg-dark cbg-rolo text-white text-center p-2">
+			<h1 class="text-bold text-uppercase ctext-shadow ">🍿Lista de filme🍿</h1>
+		</div>
 	</header>
-	<div class="container">
-		<div class="header">
-            <div class="cbg-rolo text-white text-center p-2">
-                <h1 class="text-bold text-uppercase ctext-shadow ">🍿Lista de filme🍿</h1>
-            </div>
-        </div>
+	<div class="container text-center">
+
 		<div class="row justify-content-center">
 			<table class="table table-light my-3 col-md-10 rounded shadow">
 				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Pôster</th>
-						<th scope="col">Id</th>
-						<th scope="col">Título</th>
-						<th scope="col">Gênero</th>
-						<th scope="col">Diretor</th>
-						<th scope="col">Lançamento</th>
-					</tr>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Pôster</th>
+					<th scope="col">Id</th>
+					<th scope="col">Título</th>
+					<th scope="col">Gênero</th>
+					<th scope="col">Diretor</th>
+					<th scope="col">Lançamento</th>
+				</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="filme" items="${filmes}">
-						<tr>
-							<td scope="row"><img src="${filme.posterPath}" class="img-thumbnail" width="70"></td>
-							<td class="align-middle text-center">${filme.id}</td>
-							<td class="align-middle">${filme.titulo}</td>
-							<td class="align-middle">${filme.genero.nome}</td>
-							<td class="align-middle">${filme.diretor}</td>
-							<td class="align-middle text-center"><fmt:formatDate value="${filme.dataLancamento}" dateStyle="SHORT"/></td>
-						</tr>
-					</c:forEach>
+				<c:forEach var="filme" items="${filmes}">
+					<tr>
+						<td scope="row" class="align-middle"><input type="checkbox" name="box${filme.id}" id="box${filme.id}"></td>
+						<td class="align-middle"><img src="${filme.posterPath}" class="img-thumbnail" width="70"></td>
+						<td class="align-middle text-center">${filme.id}</td>
+						<td class="align-middle">${filme.titulo}</td>
+						<td class="align-middle">${filme.genero.nome}</td>
+						<td class="align-middle">${filme.diretor}</td>
+						<td class="align-middle text-center"><fmt:formatDate value="${filme.dataLancamento}" dateStyle="SHORT"/></td>
+					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

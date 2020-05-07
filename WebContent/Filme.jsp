@@ -16,19 +16,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/da77f520d1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header>
         <c:import url="Menu.jsp"/>
+        <div class="bg-dark cbg-rolo text-white text-center p-2">
+            <h1 class="text-bold text-uppercase ctext-shadow ">🍿Filme🍿</h1>
+        </div>
     </header>
     <div class="container">
-        <div class="header">
-            <div class="cbg-rolo text-white text-center p-2">
-                <h1 class="text-bold text-uppercase ctext-shadow ">🍿Filme🍿</h1>
-            </div>
-        </div>
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <form action="manter_filmes.do" method="POST" class="card my-3 rounded shadow bg-light">
