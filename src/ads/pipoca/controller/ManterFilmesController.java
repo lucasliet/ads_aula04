@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.NoSuchElementException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +38,8 @@ public class ManterFilmesController extends HttpServlet {
 		
 		ArrayList<Filme> filmes = null;
 		ArrayList<Genero> generos = null;
+
+		FilmeService fService = new FilmeService();
 		
 		String saida = null;
 		
@@ -134,6 +138,26 @@ public class ManterFilmesController extends HttpServlet {
 			request.setAttribute("filmes", filmes);
 			saida = "AdmPanel.jsp";
 			
+			break;
+		case "lista-excluir":
+			Enumeration<String> pars = request.getParameterNames();
+			ArrayList<Integer> listaIds = new ArrayList<>();
+			String[] vals;
+			String par;
+			try {
+				while((par = pars.nextElement()) != null) {
+					if (par.startsWith("box")) {
+						vals = request.getParameterValues(par);
+						if (vals != null && vals.length > 0 && vals[0].equals("on")){
+							listaIds.add(Integer.parseInt(par.substring(3)));
+						}
+					}
+				}
+			} catch (NoSuchElementException nsee) {
+			}
+			System.out.println("Lista ids: "+listaIds);
+			fService.excluirVariosFilmes(listaIds);
+			saida = "FilmesLista.jsp";
 			break;
 		}
 		RequestDispatcher view = request.getRequestDispatcher(saida);

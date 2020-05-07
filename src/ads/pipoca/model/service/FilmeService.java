@@ -31,4 +31,11 @@ public class FilmeService {
         FilmeDAO dao = new FilmeDAO();
         return dao.atualizarFilme(filme);
     }
+
+    public void excluirVariosFilmes(ArrayList<Integer> lista) throws IOException{
+        FilmeDAO dao = new FilmeDAO();
+		for(int id:lista) {
+			dao.deletarFilme(id);
+		}
+    }
 }
