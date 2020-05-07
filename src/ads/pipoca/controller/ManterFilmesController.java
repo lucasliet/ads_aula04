@@ -157,6 +157,8 @@ public class ManterFilmesController extends HttpServlet {
 			}
 			System.out.println("Lista ids: "+listaIds);
 			fService.excluirVariosFilmes(listaIds);
+			filmes = listarFilmes();
+			request.setAttribute("filmes", filmes);
 			saida = "FilmesLista.jsp";
 			break;
 		}

@@ -30,13 +30,11 @@
 	</header>
 	<div class="container">
 		<div class="row mt-3 justify-content-center">
-			<div class="bg-dark col-md-10 py-3">
-			<form action="manter_filmes.do" method="POST">
-				<button type="submit" name="acao" value="lista-excluir" id="btnExcluir" class="btn btn-danger" disabled>Excluir</button>
-				<button id="btnEditar" class="btn btn-warning" disabled>Editar</button>
-				<button id="btnVisualizar" class="btn btn-primary" disabled>Editar</button>
+			<form action="manter_filmes.do" method="POST" class="bg-dark col-md-10 py-3">
+				<button id="btnExcluir" type="button" class="btn btn-danger text-uppercase" data-toggle="modal" data-target="#modalExcluir" disabled>Excluir </button>
+				<button id="btnEditar" class="btn btn-warning text-uppercase" disabled>Editar</button>
+				<button id="btnVisualizar" class="btn btn-primary text-uppercase" disabled>Editar</button>
 			</form>
-			</div>
 		</div>
 		<div class="row justify-content-center">
 			<table class="table table-light my-3 col-md-10 rounded shadow">
@@ -67,6 +65,32 @@
 			</table>
 		</div>
 	</div>
+	<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
+		 aria-labelledby="modalExcluirTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-dark text-white">
+					<h5 class="modal-title" id="modalExcluirLongTitle">Tem certeza que deseja excluir?
+					</h5>
+					<button type="button" class="close text-white" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cancelar</button>
+					<form action="manter_filmes.do" method="POST">
+						<button type="submit" name="acao" value="lista-excluir"
+								class="btn btn-danger text-uppercase">Excluir</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script>
     	var caixa = [];
     	function tratarBotoes(element){
@@ -90,8 +114,5 @@
     		}
     	}
     </script>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
