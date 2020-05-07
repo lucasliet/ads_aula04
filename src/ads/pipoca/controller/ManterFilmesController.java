@@ -30,137 +30,153 @@ public class ManterFilmesController extends HttpServlet {
 		String acao = request.getParameter("acao");
 		
 		Filme filme = null;
-		int idFilme, idGenero;
-		String titulo, diretor, descricao, posterPath = null;
+		int idFilme = -1,
+				idGenero = -1;
+		String titulo = null,
+				diretor = null,
+				descricao = null,
+				posterPath = null,
+				par = null;
 		SimpleDateFormat sqlDate = new SimpleDateFormat("yyyy-MM-dd");
 		Date data = null;
-		double popularidade;
+		double popularidade = -1;
 		
 		ArrayList<Filme> filmes = null;
 		ArrayList<Genero> generos = null;
+
+		Enumeration<String> pars = null;
 
 		FilmeService fService = new FilmeService();
 		
 		String saida = null;
 		
 		switch (acao) {
-		case "page-adm":
-			generos = listarGeneros();
-			request.setAttribute("generos", generos);
-			filmes = listarFilmes();
-			request.setAttribute("filmes", filmes);
-			saida = "AdmPanel.jsp";
-			break;
-			
-		case "page-todos":
-			filmes = listarFilmes();
-			request.setAttribute("filmes", filmes);
-			saida = "FilmesLista.jsp";
-			break;
-			
-		case "page-exibir":
-			idFilme = Integer.parseInt(request.getParameter("id_exibir"));
-			filme = buscarFilme(idFilme);
-			request.setAttribute("filme", filme);
-			request.setAttribute("titulo", "Exibir Filme");
-			saida = "Filme.jsp";
-			break;
-			
-		case "page-excluir":
-			idFilme = Integer.parseInt(request.getParameter("id_excluir"));
-			filme = buscarFilme(idFilme);
-			request.setAttribute("filme", filme);
-			request.setAttribute("titulo", "Excluir Filme");
-			request.setAttribute("btn", "<button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>");
-		    saida = "Filme.jsp";
-			break;
-			
-		case "page-atualizar":
-			idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
-			filme = buscarFilme(idFilme);
-			request.setAttribute("filme", filme);
-			generos = listarGeneros();
-			request.setAttribute("generos", generos);
-			saida = "AtualizarFilme.jsp";
-			break;
-			
-		case "btn-inserir":
-			titulo = request.getParameter("titulo");
-			diretor = request.getParameter("diretor");
-			descricao = request.getParameter("descricao");
-			
-			try {
-				data = sqlDate.parse(request.getParameter("data"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			idGenero = Integer.parseInt(request.getParameter("genero"));
-			posterPath = request.getParameter("posterpath");
-			
-			idFilme = inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
-			Filme filmeInserido = buscarFilme(idFilme);
-			
-			request.setAttribute("filme", filmeInserido);
-			request.setAttribute("titulo", "Filme Inserido");
-			saida = "Filme.jsp";
-			break;
-			
-		case "btn-atualizar":
-			idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
-			titulo = request.getParameter("titulo");
-			descricao = request.getParameter("descricao");
-			diretor = request.getParameter("diretor");
-			idGenero = Integer.parseInt(request.getParameter("genero"));
-			
-			try {
-				data = sqlDate.parse(request.getParameter("data"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			popularidade = Double.parseDouble(request.getParameter("popularidade"));
-			posterPath = request.getParameter("posterpath");
-			filme = atualizarFilme(idFilme, titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
-			request.setAttribute("filme", filme);
-			request.setAttribute("titulo", "Filme Atualizado");
-			saida = "Filme.jsp";
-			break;
-			
-		case "btn-excluir":
-			int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
-			int feedback = deletarFilme(filmeId);
-			generos = listarGeneros();
-			filmes = listarFilmes();
-			request.setAttribute("feedback", feedback);
-			request.setAttribute("generos", generos);
-			request.setAttribute("filmes", filmes);
-			saida = "AdmPanel.jsp";
-			
-			break;
-		case "lista-excluir":
-			Enumeration<String> pars = request.getParameterNames();
-			ArrayList<Integer> listaIds = new ArrayList<>();
-			String[] vals;
-			String par;
-			try {
-				while((par = pars.nextElement()) != null) {
-					if (par.startsWith("box")) {
-						vals = request.getParameterValues(par);
-						if (vals != null && vals.length > 0 && vals[0].equals("on")){
-							listaIds.add(Integer.parseInt(par.substring(3)));
+			case "page-adm":
+				generos = listarGeneros();
+				request.setAttribute("generos", generos);
+				filmes = listarFilmes();
+				request.setAttribute("filmes", filmes);
+				saida = "AdmPanel.jsp";
+				break;
+
+			case "page-todos":
+				filmes = listarFilmes();
+				request.setAttribute("filmes", filmes);
+				saida = "FilmesLista.jsp";
+				break;
+
+			case "page-exibir":
+				idFilme = Integer.parseInt(request.getParameter("id_exibir"));
+				filme = buscarFilme(idFilme);
+				request.setAttribute("filme", filme);
+				request.setAttribute("titulo", "Exibir Filme");
+				saida = "Filme.jsp";
+				break;
+
+			case "page-excluir":
+				idFilme = Integer.parseInt(request.getParameter("id_excluir"));
+				filme = buscarFilme(idFilme);
+				request.setAttribute("filme", filme);
+				request.setAttribute("titulo", "Excluir Filme");
+				request.setAttribute("btn", "<button type=\"button\" class=\"btn btn-danger text-uppercase\" data-toggle=\"modal\" data-target=\"#modalExcluir\">Excluir </button>");
+				saida = "Filme.jsp";
+				break;
+
+			case "page-atualizar":
+				idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
+				filme = buscarFilme(idFilme);
+				request.setAttribute("filme", filme);
+				generos = listarGeneros();
+				request.setAttribute("generos", generos);
+				saida = "AtualizarFilme.jsp";
+				break;
+
+			case "btn-inserir":
+				titulo = request.getParameter("titulo");
+				diretor = request.getParameter("diretor");
+				descricao = request.getParameter("descricao");
+
+				try {
+					data = sqlDate.parse(request.getParameter("data"));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+				popularidade = Double.parseDouble(request.getParameter("popularidade"));
+				idGenero = Integer.parseInt(request.getParameter("genero"));
+				posterPath = request.getParameter("posterpath");
+
+				idFilme = inserirFilme(titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
+				Filme filmeInserido = buscarFilme(idFilme);
+
+				request.setAttribute("filme", filmeInserido);
+				request.setAttribute("titulo", "Filme Inserido");
+				saida = "Filme.jsp";
+				break;
+
+			case "btn-atualizar":
+				idFilme = Integer.parseInt(request.getParameter("id_atualizar"));
+				titulo = request.getParameter("titulo");
+				descricao = request.getParameter("descricao");
+				diretor = request.getParameter("diretor");
+				idGenero = Integer.parseInt(request.getParameter("genero"));
+
+				try {
+					data = sqlDate.parse(request.getParameter("data"));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+				popularidade = Double.parseDouble(request.getParameter("popularidade"));
+				posterPath = request.getParameter("posterpath");
+				filme = atualizarFilme(idFilme, titulo, descricao, diretor, idGenero, data, popularidade, posterPath);
+				request.setAttribute("filme", filme);
+				request.setAttribute("titulo", "Filme Atualizado");
+				saida = "Filme.jsp";
+				break;
+
+			case "btn-excluir":
+				int filmeId = Integer.parseInt(request.getParameter("id_excluir"));
+				int feedback = deletarFilme(filmeId);
+				generos = listarGeneros();
+				filmes = listarFilmes();
+				request.setAttribute("feedback", feedback);
+				request.setAttribute("generos", generos);
+				request.setAttribute("filmes", filmes);
+				saida = "AdmPanel.jsp";
+
+				break;
+			case "lista-excluir":
+				pars = request.getParameterNames();
+				ArrayList<Integer> listaIds = new ArrayList<>();
+				String[] vals;
+				try {
+					while((par = pars.nextElement()) != null) {
+						if (par.startsWith("box")) {
+							vals = request.getParameterValues(par);
+							if (vals != null && vals.length > 0 && vals[0].equals("on")){
+								listaIds.add(Integer.parseInt(par.substring(3)));
+							}
 						}
 					}
+				} catch (NoSuchElementException nsee) {
 				}
-			} catch (NoSuchElementException nsee) {
-			}
-			System.out.println("Lista ids: "+listaIds);
-			fService.excluirVariosFilmes(listaIds);
-			filmes = listarFilmes();
-			request.setAttribute("filmes", filmes);
-			saida = "FilmesLista.jsp";
-			break;
+				System.out.println("Lista ids: "+listaIds);
+				fService.excluirVariosFilmes(listaIds);
+				filmes = listarFilmes();
+				request.setAttribute("filmes", filmes);
+				saida = "FilmesLista.jsp";
+				break;
+			case "lista-exibir":
+				pars = request.getParameterNames();
+				par = pars.nextElement();
+				if(par.startsWith("box")){
+					idFilme = Integer.parseInt(par.substring(3));
+				}
+				filme = buscarFilme(idFilme);
+				request.setAttribute("filme",filme);
+				saida ="Filme.jsp";
+				break;
 		}
 		RequestDispatcher view = request.getRequestDispatcher(saida);
 		view.forward(request, response);

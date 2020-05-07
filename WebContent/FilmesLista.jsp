@@ -32,8 +32,8 @@
 		<div class="row mt-3 justify-content-center">
 			<form action="manter_filmes.do" method="POST" class="bg-dark col-md-10 py-3">
 				<button id="btnExcluir" type="button" class="btn btn-danger text-uppercase" data-toggle="modal" data-target="#modalExcluir" disabled>Excluir </button>
-				<button id="btnEditar" class="btn btn-warning text-uppercase" disabled>Editar</button>
-				<button id="btnVisualizar" class="btn btn-primary text-uppercase" disabled>Editar</button>
+				<button id="btnEditar" class="btn btn-warning text-uppercase mx-3" disabled>Editar</button>
+				<button id="btnVisualizar" type="submit" name="acao" value="lista-exibir" class="btn btn-primary text-uppercase" disabled>Exibir</button>
 			</form>
 		</div>
 		<div class="row justify-content-center">
@@ -52,7 +52,7 @@
 				<tbody>
 				<c:forEach var="filme" items="${filmes}">
 					<tr>
-						<td scope="row" class="align-middle"><input type="checkbox" name="box${filme.id}" id="box${filme.id}" onClick="tratarBotoes(this)"></td>
+						<td scope="row" class="align-middle"><input type="checkbox" name="box${filme.id}" onClick="tratarBotoes(this)"></td>
 						<td class="align-middle"><img src="${filme.posterPath}" class="img-thumbnail" width="70"></td>
 						<td class="align-middle text-center">${filme.id}</td>
 						<td class="align-middle">${filme.titulo}</td>
