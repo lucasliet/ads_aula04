@@ -31,7 +31,9 @@
 	<form action="manter_filmes.do" method="POST">
 		<div class="container">
 			<div class="row mt-3 justify-content-center">
-				<div class="bg-dark col-md-10 py-3">
+			</div>
+			<div class="row justify-content-center my-3">
+				<div class="bg-dark col-md-10 pl-5 py-3 rounded-top shadow" style="background-color: rgba(255,255,255,.05)">
 					<button id="btnExcluir" type="button"
 						class="btn btn-danger text-uppercase" data-toggle="modal"
 						data-target="#modalExcluir" disabled>Excluir</button>
@@ -42,10 +44,8 @@
 						value="lista-exibir" class="btn btn-primary text-uppercase"
 						disabled>Exibir</button>
 				</div>
-			</div>
-			<div class="row justify-content-center">
-				<table class="table table-striped my-3 col-md-10 rounded shadow">
-					<thead class="thead-dark">
+				<table class="table table-dark table-striped col-md-10 rounded-bottom shadow">
+					<thead>
 						<tr>
 							<th scope="col"></th>
 							<th scope="col">Pôster</th>
