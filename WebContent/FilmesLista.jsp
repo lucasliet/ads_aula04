@@ -5,31 +5,30 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-
-<title>Lista de Filmes</title>
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
-<script src="https://kit.fontawesome.com/da77f520d1.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/style.css">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		
+		<title>Lista de Filmes</title>
+		
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="css/style.css">
+	</head>
 <body>
-	<header>
+	<header id="topo">
 		<c:import url="Menu.jsp" />
 		<div class="bg-dark cbg-rolo text-white text-center p-2">
 			<h1 class="text-bold text-uppercase ctext-shadow ">🍿Lista de
 				filme🍿</h1>
 		</div>
 	</header>
-	<form action="manter_filmes.do" method="GET">
+	<form action="manter_filmes.do" method="POST">
 		<div class="container">
 			<div class="row mt-3 justify-content-center">
 				<div class="bg-dark col-md-10 py-3">
@@ -45,7 +44,7 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<table class="table table-light my-3 col-md-10 rounded shadow">
+				<table class="table table-striped my-3 col-md-10 rounded shadow">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col"></th>
@@ -74,6 +73,18 @@
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+			<div class="row justify-content-center">
+				<div class="bg-dark col-md-10 mb-3">
+					<div class="row mt-3">
+						<div class="col-md-3">
+	                  		<p><a class="btn btn-secondary" href="#topo" role="button">Voltar ao topo &raquo;</a></p>
+						</div>
+	                	<div class="col-md-6">
+	               			 <p class="text-center text-white">&copy;2020 Pipoca Company, Inc. &middot; </p>
+	                	</div>
+					</div>    
+	             </div>   
 			</div>
 		</div>
 		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
