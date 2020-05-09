@@ -44,7 +44,7 @@
 						value="lista-exibir" class="btn btn-primary text-uppercase"
 						disabled>Exibir</button>
 				</div>
-				<table class="table table-dark table-striped col-md-10 rounded-bottom shadow">
+				<table class="table table-dark table-striped col-sm-10 rounded-bottom shadow">
 					<thead>
 						<tr>
 							<th scope="col"></th>
@@ -73,19 +73,10 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-			<div class="row justify-content-center">
-				<div class="bg-dark col-md-10 mb-3">
-					<div class="row mt-3">
-						<div class="col-md-3">
-	                  		<p><a class="btn btn-secondary" href="#topo" role="button">Voltar ao topo &raquo;</a></p>
-						</div>
-	                	<div class="col-md-6">
-	               			 <p class="text-center text-white">&copy;2020 Pipoca Company, Inc. &middot; </p>
-	                	</div>
-					</div>    
-	             </div>   
-			</div>
+			</div>	
+			<div class="fixed-bottom mb-5 mr-2">
+				<p><a class="btn btn-secondary btn-topo" href="#topo" role="button"> ^ </a></p>
+			</div>  
 		</div>
 		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
 			aria-labelledby="modalExcluirTitle" aria-hidden="true">
