@@ -3,10 +3,7 @@ package ads.pipoca.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,13 +35,11 @@ public class ManterFilmesController extends HttpServlet {
 
 		ArrayList<Filme> filmes = null;
 		ArrayList<Genero> generos = null;
-
-		Enumeration<String> pars = null;
-		String[] vals;
+		ArrayList<Integer> listaIds = null;
 
 		FilmeService fService = new FilmeService();
 
-		String saida = null;
+		String saida = "index.html";
 
 		switch (acao) {
 		case "page-adm":
@@ -143,55 +138,23 @@ public class ManterFilmesController extends HttpServlet {
 			saida = "AdmPanel.jsp";
 
 			break;
-		case "lista-excluir":
-			pars = request.getParameterNames();
-			ArrayList<Integer> listaIds = new ArrayList<>();
-			try {
-				while ((par = pars.nextElement()) != null) {
-					if (par.startsWith("box")) {
-						vals = request.getParameterValues(par);
-						if (vals != null && vals.length > 0 && vals[0].equals("on")) {
-							listaIds.add(Integer.parseInt(par.substring(3)));
-						}
-					}
-				}
-			} catch (NoSuchElementException nsee) {
-			}
+		case "btn-excluir-lista":
+			listaIds = obterIds(request);
 			fService.excluirVariosFilmes(listaIds);
 			filmes = listarFilmes();
 			request.setAttribute("filmes", filmes);
 			saida = "FilmesLista.jsp";
 			break;
-		case "lista-exibir":
-			pars = request.getParameterNames();
-			try {
-				while ((par = pars.nextElement()) != null) {
-					if (par.startsWith("box")) {
-						vals = request.getParameterValues(par);
-						if (vals != null && vals.length > 0 && vals[0].equals("on")) {
-							idFilme = Integer.parseInt(par.substring(3));
-						}
-					}
-				}
-			} catch (NoSuchElementException nsee) {
-			}
+		case "btn-exibir-lista":
+			listaIds = obterIds(request);
+			idFilme = listaIds.get(0);
 			filme = buscarFilme(idFilme);
 			request.setAttribute("filme", filme);
 			saida = "Filme.jsp";
 			break;
-		case "lista-atualizar":
-			pars = request.getParameterNames();
-			try {
-				while ((par = pars.nextElement()) != null) {
-					if (par.startsWith("box")) {
-						vals = request.getParameterValues(par);
-						if (vals != null && vals.length > 0 && vals[0].equals("on")) {
-							idFilme = Integer.parseInt(par.substring(3));
-						}
-					}
-				}
-			} catch (NoSuchElementException nsee) {
-			}
+		case "btn-atualizar-lista":
+			listaIds = obterIds(request);
+			idFilme = listaIds.get(0);
 			filme = buscarFilme(idFilme);
 			request.setAttribute("filme", filme);
 			generos = listarGeneros();
@@ -207,6 +170,27 @@ public class ManterFilmesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	private ArrayList<Integer> obterIds(HttpServletRequest request){
+		Enumeration<String> pars = request.getParameterNames();
+		ArrayList<Integer> listaIds = new ArrayList<>();
+		String par;
+		String[] vals = null;
+
+		try {
+			while ((par = pars.nextElement()) != null) {
+				if (par.startsWith("box")) {
+					System.out.println(par +" = "+ Arrays.toString(request.getParameterValues(par)));
+					vals = request.getParameterValues(par);
+					if (vals != null && vals.length > 0 && vals[0].equals("on")) {
+						listaIds.add(Integer.parseInt(par.substring(3)));
+					}
+				}
+			}
+		} catch(NoSuchElementException nsee) {
+		}
+		return listaIds;
 	}
 
 	public Filme buscarFilme(int id) throws IOException {

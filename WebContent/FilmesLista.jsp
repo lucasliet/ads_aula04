@@ -38,10 +38,10 @@
 						class="btn btn-danger text-uppercase" data-toggle="modal"
 						data-target="#modalExcluir" disabled>Excluir</button>
 					<button id="btnEditar" type="submit" name="acao"
-						value="lista-atualizar" class="btn btn-warning text-uppercase mx-3"
+						value="btn-atualizar-lista" class="btn btn-warning text-uppercase mx-3"
 						disabled>Editar</button>
 					<button id="btnVisualizar" type="submit" name="acao"
-						value="lista-exibir" class="btn btn-primary text-uppercase"
+						value="btn-exibir-lista" class="btn btn-primary text-uppercase"
 						disabled>Exibir</button>
 				</div>
 				<table class="table table-dark table-striped col-sm-10 rounded-bottom shadow">
@@ -93,7 +93,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Cancelar</button>
-						<button type="submit" name="acao" value="lista-excluir"
+						<button type="submit" name="acao" value="btn-excluir-lista"
 							class="btn btn-danger text-uppercase">Excluir</button>
 					</div>
 				</div>
