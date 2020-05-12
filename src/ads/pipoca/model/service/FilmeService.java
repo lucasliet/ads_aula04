@@ -12,6 +12,14 @@ public class FilmeService {
         return dao.listarFilmes();
     }
 
+    public ArrayList<Filme> listarFilmes(ArrayList<Integer> lista) throws IOException {
+        ArrayList<Filme> filmes = new ArrayList<>();
+        for(int id:lista) {
+            filmes.add(buscarFilme(id));
+        }
+        return filmes;
+    }
+
     public Filme buscarFilme(int id) throws IOException {
         FilmeDAO dao = new FilmeDAO();
         return dao.buscarFilme(id);

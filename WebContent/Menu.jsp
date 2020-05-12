@@ -10,8 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="AdmPanel.jsp">
+                    <a class="nav-link text-white" href="comprar_filmes.do?acao=page-todos">
                         <i class="fas fa-home mr-1"></i>Home
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="manter_filmes.do?acao=page-adm">
+                        <i class="fas fa-user-shield mr-1"></i>Painel ADM
                     </a>
                 </li>
                 <li class="nav-item active">
