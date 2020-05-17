@@ -60,13 +60,14 @@ public class ComprarFilmesController extends HttpServlet {
                 request.setAttribute("filme", filme);
                 saida = "Filme.jsp";
                 break;
+            
         }
-
         RequestDispatcher view = request.getRequestDispatcher(saida);
         view.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
