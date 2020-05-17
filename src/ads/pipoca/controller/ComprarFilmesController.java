@@ -79,6 +79,9 @@ public class ComprarFilmesController extends HttpServlet {
                 saida = "Carrinho.jsp";
                 break;
 
+            case "btn-finalizar":
+                carrinho = null;
+                session.setAttribute("filmes", carrinho);
         }
         RequestDispatcher view = request.getRequestDispatcher(saida);
         view.forward(request, response);
