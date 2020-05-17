@@ -34,7 +34,7 @@
 			<div class="row justify-content-center my-3">
 				<div class="bg-dark col-md-10 pl-5 py-3 rounded-top shadow" style="background-color: rgba(255,255,255,.05)">
 					<button id="btnComprar" type="submit" name="acao"
-						value="page-comprar" class="btn btn-success text-uppercase">Finalizar
+						value="btn-finalizar" class="btn btn-success text-uppercase">Finalizar
 					</button>
 					<button id="btnExibir" type="submit" name="acao"
 						value="btn-exibir" class="btn btn-primary text-uppercase ml-3"disabled>Exibir
