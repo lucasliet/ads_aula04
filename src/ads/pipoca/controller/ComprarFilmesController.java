@@ -25,8 +25,12 @@ public class ComprarFilmesController extends HttpServlet {
         FilmeService fService = new FilmeService();
         String saida = "index.jsp";
         HttpSession session = request.getSession();
+        Filme filme = null;
         ArrayList<Filme> carrinho = null;
         ArrayList<Filme> filmes = null;
+        ArrayList<Integer> listaIds = null;
+        Object aux = null;
+
         switch(acao) {
             case "page-todos":
                 filmes = fService.listarFilmes();
@@ -37,7 +41,7 @@ public class ComprarFilmesController extends HttpServlet {
             case "page-comprar":
                 filmes = fService.listarFilmes(obterIds(request));
                 //pegar o carrinho da sessão e ver se já tem filmes
-                Object aux = session.getAttribute("filmes");
+                aux = session.getAttribute("filmes");
                 if(aux != null && aux instanceof ArrayList<?>) {
                     carrinho = (ArrayList<Filme>)aux;
                     if (carrinho.size() > 0) {
@@ -55,12 +59,26 @@ public class ComprarFilmesController extends HttpServlet {
                 break;
 
             case "btn-exibir":
-                ArrayList<Integer> listaIds = obterIds(request);
-                Filme filme = fService.buscarFilme(listaIds.get(0));
+                listaIds = obterIds(request);
+                filme = fService.buscarFilme(listaIds.get(0));
                 request.setAttribute("filme", filme);
                 saida = "Filme.jsp";
                 break;
-            
+
+            case "btn-excluir-do-carrinho":
+                filmes = fService.listarFilmes(obterIds(request));
+                aux = session.getAttribute("filmes");
+
+                if (aux != null && aux instanceof ArrayList<?>) {
+                    carrinho = (ArrayList<Filme>)aux;
+                    if (carrinho.size() > 0){
+                        carrinho.removeAll(filmes);
+                    }
+                }
+                session.setAttribute("filmes", carrinho);
+                saida = "Carrinho.jsp";
+                break;
+
         }
         RequestDispatcher view = request.getRequestDispatcher(saida);
         view.forward(request, response);
