@@ -27,7 +27,7 @@
 			<h1 class="text-bold text-uppercase ctext-shadow ">🍿Finalizar compra🍿</h1>
 		</div>
 	</header>
-	<form action="comprar_filmes.do" method="POST">
+	<form action="comprar_filmes.do" method="GET">
 		<div class="container">
 			<div class="row mt-3 justify-content-center">
 			</div>
@@ -40,9 +40,9 @@
 						value="btn-exibir" class="btn btn-primary text-uppercase ml-3"disabled>Exibir
 					</button>
 					<button id="btnExcluir" type="submit" name="acao"
-						value="btn-excluir" class="btn btn-danger text-uppercase ml-3"disabled>Excluir
+						value="btn-excluir-do-carrinho" class="btn btn-danger text-uppercase ml-3"disabled>Excluir
 					</button>
-					<a href="FilmesListaComprar.jsp" class="btn btn-light text-uppercase ml-3">Voltar</a>
+					<button type="submit" name="acao" value="page-todos" class="btn btn-light text-uppercase ml-3">Voltar</button>
 				</div>
 				<table class="table table-dark table-striped col-sm-10 rounded-bottom shadow">
 					<thead>

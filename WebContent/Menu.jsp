@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="comprar_filmes.do">
+                    <a class="nav-link text-white" href="comprar_filmes.do?acao=page-comprar">
                         <i class="fas fa-shopping-cart mr-1"></i>Carrinho
                     </a>
                 </li>
