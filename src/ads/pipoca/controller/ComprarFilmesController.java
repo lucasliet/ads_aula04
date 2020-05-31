@@ -47,7 +47,7 @@ public class ComprarFilmesController extends HttpServlet {
         Usuario logado = (Usuario) session.getAttribute("logado");
 
         switch (acao) {
-            case "page-todos":
+            case "page-lista":
                 filmes = fService.listarFilmes();
                 request.setAttribute("filmes", filmes);
                 saida = "FilmesListaComprar.jsp";
@@ -65,6 +65,15 @@ public class ComprarFilmesController extends HttpServlet {
                 carrinho.addAll(filmes);
                 session.setAttribute("filmes", carrinho);
                 saida = "Carrinho.jsp";
+                break;
+
+            case "page-listar-compras":
+                compras = cService.lerLogCompra(path);
+                if (compras == null) {
+                    compras = new ArrayList<>();
+                }
+                request.setAttribute("compras", compras);
+                saida = "LogCompras.jsp";
                 break;
 
             case "btn-exibir":
@@ -108,16 +117,6 @@ public class ComprarFilmesController extends HttpServlet {
                 session.setAttribute("filmes", null);
                 saida = "Agradecimentos.jsp";
                 break;
-
-            case "listar-compras":
-                compras = cService.lerLogCompra(path);
-                if (compras == null) {
-                    compras = new ArrayList<>();
-                }
-                request.setAttribute("compras", compras);
-                saida = "LogCompras.jsp";
-                break;
-
         }
         RequestDispatcher view = request.getRequestDispatcher(saida);
         view.forward(request, response);

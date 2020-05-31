@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="comprar_filmes.do?acao=page-todos">
+                    <a class="nav-link text-white" href="comprar_filmes.do?acao=page-lista">
                         <i class="fas fa-home mr-1"></i>Home
                     </a>
                 </li>
@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="comprar_filmes.do?acao=page-comprar">
+                    <a class="nav-link text-white" href="Carrinho.jsp">
                         <i class="fas fa-shopping-cart mr-1"></i>Carrinho
                     </a>
                 </li>
