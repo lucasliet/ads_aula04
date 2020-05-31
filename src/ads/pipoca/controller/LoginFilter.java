@@ -34,14 +34,14 @@ public class LoginFilter implements Filter{
 		}
 
 		if (logado != null || 
-				uri.equals(path+"/index.html") ||
+				uri.equals(path+"/") ||
 				acao.equals("login") ||
 				uri.endsWith(".js") ||
 				uri.endsWith(".css") ||
 				uri.contains("fonts")) {
 			chain.doFilter(request, response);
 		} else {
-			resp.sendRedirect(path+"/index.html");
+			resp.sendRedirect(path+"/");
 		}
 		
 	}

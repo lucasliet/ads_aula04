@@ -1,7 +1,8 @@
 package ads.pipoca.model.entity;
 import java.util.Date;
+import java.util.TreeSet;
 
-public class Filme {
+public class Filme implements Comparable<Filme> {
 	private int id;
 	private String titulo;
 	private String descricao;
@@ -91,8 +92,11 @@ public class Filme {
 		return id == filme.id;
 	}
 
-	public int compareTo(Filme o) {
-		return getId()-o.getId();
+	@Override
+	public int compareTo(Filme outro) {
+		String chave1 = getTitulo()+getDataLancamento().getTime();
+		String chave2 = outro.getTitulo()+outro.getDataLancamento().getTime();
+		return chave1.compareTo(chave2);
 	}
 
 	@Override
