@@ -26,7 +26,7 @@ public class ComprarFilmesController extends HttpServlet {
         String saida = "index.jsp";
         HttpSession session = request.getSession();
         Filme filme = null;
-        ArrayList<Filme> carrinho = null;
+        TreeSet<Filme> carrinho = null;
         ArrayList<Filme> filmes = null;
         ArrayList<Integer> listaIds = null;
         Object aux = null;
@@ -42,18 +42,12 @@ public class ComprarFilmesController extends HttpServlet {
                 filmes = fService.listarFilmes(obterIds(request));
                 //pegar o carrinho da sessão e ver se já tem filmes
                 aux = session.getAttribute("filmes");
-                if(aux != null && aux instanceof ArrayList<?>) {
-                    carrinho = (ArrayList<Filme>)aux;
-                    if (carrinho.size() > 0) {
-                        for(Filme f:filmes) {
-                            carrinho.add(f);
-                        }
-                    } else {
-                        carrinho = filmes;
-                    }
+                if(aux instanceof TreeSet<?>) {
+                    carrinho = (TreeSet<Filme>)aux;
                 } else {
-                    carrinho = filmes;
+                    carrinho = new TreeSet<>();
                 }
+                carrinho.addAll(filmes);
                 session.setAttribute("filmes", carrinho);
                 saida = "Carrinho.jsp";
                 break;
@@ -69,8 +63,8 @@ public class ComprarFilmesController extends HttpServlet {
                 filmes = fService.listarFilmes(obterIds(request));
                 aux = session.getAttribute("filmes");
 
-                if (aux != null && aux instanceof ArrayList<?>) {
-                    carrinho = (ArrayList<Filme>)aux;
+                if (aux != null && aux instanceof TreeSet<?>) {
+                    carrinho = (TreeSet<Filme>)aux;
                     if (carrinho.size() > 0){
                         carrinho.removeAll(filmes);
                     }
@@ -112,6 +106,7 @@ public class ComprarFilmesController extends HttpServlet {
                 }
             }
         } catch(NoSuchElementException nsee) {
+            nsee.printStackTrace();
         }
         return listaIds;
     }

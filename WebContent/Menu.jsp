@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="index.html">
+                    <a class="nav-link text-white" href="login.do?acao=logout">
                         <i class="fas fa-power-off mr-1"></i>Sair
                     </a>
                 </li>

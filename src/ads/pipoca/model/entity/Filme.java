@@ -76,11 +76,23 @@ public class Filme {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Filme filme = (Filme) o;
 		return id == filme.id;
+	}
+
+	public int compareTo(Filme o) {
+		return getId()-o.getId();
 	}
 
 	@Override
