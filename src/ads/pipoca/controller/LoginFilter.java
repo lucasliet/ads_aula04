@@ -36,9 +36,10 @@ public class LoginFilter implements Filter{
 		if (logado != null || 
 				uri.equals(path+"/") ||
 				acao.equals("login") ||
+				uri.endsWith(".png") ||
+				uri.endsWith(".jpg") ||
 				uri.endsWith(".js") ||
-				uri.endsWith(".css") ||
-				uri.contains("fonts")) {
+				uri.endsWith(".css")) {
 			chain.doFilter(request, response);
 		} else {
 			resp.sendRedirect(path+"/");
