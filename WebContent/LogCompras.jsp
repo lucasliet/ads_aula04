@@ -11,7 +11,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		
-		<title>Carrinho de compras</title>
+		<title>Dados da compra</title>
 		
 		<link rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -24,7 +24,7 @@
 	<header id="topo">
 		<c:import url="Menu.jsp" />
 		<div class="bg-dark cbg-rolo text-white text-center p-2">
-			<h1 class="text-bold text-uppercase ctext-shadow ">🍿Finalizar compra🍿</h1>
+			<h1 class="text-bold text-uppercase ctext-shadow ">🍿Dados da compra🍿</h1>
 		</div>
 	</header>
 	<form action="comprar_filmes.do" method="GET">
@@ -34,41 +34,26 @@
 			<div class="row justify-content-center my-3">
 				<div class="bg-dark col-md-10 pl-5 py-3 rounded-top shadow" style="background-color: rgba(255,255,255,.05)">
 					<button id="btnComprar" type="submit" name="acao"
-						value="page-listar-compras" class="btn btn-success text-uppercase">Finalizar
+						value="btn-finalizar" class="btn btn-success text-uppercase">Finalizar
 					</button>
-					<button id="btnExibir" type="submit" name="acao"
-						value="btn-exibir" class="btn btn-primary text-uppercase ml-3"disabled>Exibir
-					</button>
-					<button id="btnExcluir" type="submit" name="acao"
-						value="btn-excluir-do-carrinho" class="btn btn-danger text-uppercase ml-3"disabled>Excluir
-					</button>
-					<button type="submit" name="acao" value="page-todos" class="btn btn-light text-uppercase ml-3">Voltar</button>
 				</div>
 				<table class="table table-dark table-striped col-sm-10 rounded-bottom shadow">
 					<thead>
 						<tr>
-							<th scope="col"></th>
-							<th scope="col">Pôster</th>
-							<th scope="col">Id</th>
-							<th scope="col">Título</th>
-							<th scope="col">Gênero</th>
-							<th scope="col">Diretor</th>
-							<th scope="col">Lançamento</th>
+							<th class="text-center" scope="col">Data</th>
+							<th class="text-center" scope="col">Id</th>
+							<th class="text-center" scope="col">Título</th>
+							<th class="text-center" scope="col">Usuário</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="filme" items="${filmes}">
+						<c:forEach var="compra" items="${compras}">
 							<tr>
-								<td scope="row" class="align-middle"><input type="checkbox"
-									name="box${filme.id}" onClick="tratarBotoes(this)"></td>
-								<td class="align-middle"><img src="${filme.posterPath}"
-									class="img-thumbnail" width="70"></td>
-								<td class="align-middle text-center">${filme.id}</td>
-								<td class="align-middle">${filme.titulo}</td>
-								<td class="align-middle">${filme.genero.nome}</td>
-								<td class="align-middle">${filme.diretor}</td>
 								<td class="align-middle text-center"><fmt:formatDate
-										value="${filme.dataLancamento}" dateStyle="SHORT" /></td>
+										value="${compra.dataCompra}" dateStyle="SHORT" /></td>
+								<td class="align-middle text-center">${compra.idFilme}</td>
+								<td class="align-middle text-center">${compra.tituloFilme}</td>
+								<td class="align-middle text-center">${compra.usuario}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
