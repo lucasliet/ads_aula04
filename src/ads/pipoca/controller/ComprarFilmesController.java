@@ -16,7 +16,7 @@ import ads.pipoca.model.entity.Filme;
 import ads.pipoca.model.entity.Usuario;
 import ads.pipoca.model.service.CompraService;
 import ads.pipoca.model.service.FilmeService;
-import sun.plugin.javascript.navig.Array;
+
 
 @WebServlet("/comprar_filmes.do")
 public class ComprarFilmesController extends HttpServlet {

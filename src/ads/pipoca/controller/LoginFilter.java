@@ -39,6 +39,7 @@ public class LoginFilter implements Filter{
 				uri.endsWith(".png") ||
 				uri.endsWith(".jpg") ||
 				uri.endsWith(".js") ||
+				uri.endsWith(".html") ||
 				uri.endsWith(".css")) {
 			chain.doFilter(request, response);
 		} else {
